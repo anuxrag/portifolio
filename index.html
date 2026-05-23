@@ -644,6 +644,48 @@ group: true;
 .thumb-play{
     z-index: 3;
 }
+.video-unmute{
+    position: absolute;
+
+    bottom: 10px;
+    right: 10px;
+
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,0.16);
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(10px);
+
+    color: white;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
+}
+
+.video-unmute:hover{
+    background: rgba(255,255,255,0.12);
+
+    border-color: rgba(255,255,255,0.3);
+
+    transform: scale(1.06);
+}
 
 .video-card:hover .video-thumb {
 border-color: rgba(255,255,255,0.15);
@@ -730,232 +772,7 @@ letter-spacing: 0.1em;
 
 .meta-dot { color: var(--silver-dim); }
 
-/* ─── PROJECT DETAIL ─── */
-.project-detail {
-background: var(--black);
-position: relative;
-}
 
-.project-inner {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 80px;
-align-items: start;
-}
-
-.project-left {}
-
-.project-video-main {
-width: 100%;
-aspect-ratio: 16/9;
-background: var(--charcoal);
-border: 1px solid var(--border);
-position: relative;
-overflow: hidden;
-margin-bottom: 24px;
-}
-
-.project-scene {
-position: absolute;
-inset: 0;
-background: linear-gradient(135deg, #0a0e18 0%, #121c2e 50%, #0c1018 100%);
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-.project-scene-el {
-position: absolute;
-inset: 0;
-}
-
-.scene-line {
-position: absolute;
-left: 0; right: 0;
-height: 1px;
-background: linear-gradient(90deg, transparent, rgba(92,157,220,0.08), transparent);
-}
-
-.scene-vignette {
-position: absolute;
-inset: 0;
-background: radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, rgba(0,0,0,0.6) 100%);
-}
-
-.project-play {
-width: 56px; height: 56px;
-border-radius: 50%;
-background: rgba(255,255,255,0.08);
-border: 1.5px solid rgba(255,255,255,0.2);
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 2;
-}
-
-.project-play-icon {
-width: 0; height: 0;
-border-top: 10px solid transparent;
-border-bottom: 10px solid transparent;
-border-left: 16px solid rgba(255,255,255,0.85);
-margin-left: 3px;
-}
-
-.before-after {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 8px;
-}
-
-.ba-frame {
-aspect-ratio: 16/9;
-border: 1px solid var(--border);
-position: relative;
-overflow: hidden;
-}
-
-.ba-before {
-background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
-filter: saturate(0.3) brightness(0.7);
-}
-
-.ba-after {
-background: linear-gradient(135deg, #0a1220, #142040);
-}
-
-.ba-label {
-position: absolute;
-bottom: 8px;
-left: 8px;
-font-family: var(--font-ui);
-font-size: 9px;
-font-weight: 500;
-letter-spacing: 0.3em;
-text-transform: uppercase;
-color: rgba(255,255,255,0.5);
-background: rgba(0,0,0,0.5);
-padding: 3px 8px;
-}
-
-.project-right {}
-
-.project-tag {
-font-family: var(--font-ui);
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 0.35em;
-text-transform: uppercase;
-color: var(--blue-accent);
-margin-bottom: 16px;
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-.project-title {
-font-family: var(--font-display);
-font-size: clamp(28px, 3vw, 48px);
-font-weight: 300;
-line-height: 1.15;
-margin-bottom: 20px;
-letter-spacing: -0.01em;
-}
-
-.project-desc {
-font-family: var(--font-body);
-font-size: 14px;
-font-weight: 300;
-color: var(--silver);
-line-height: 1.8;
-margin-bottom: 36px;
-}
-
-.project-breakdown-title {
-font-family: var(--font-ui);
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 0.4em;
-text-transform: uppercase;
-color: var(--silver-dim);
-margin-bottom: 20px;
-}
-
-.breakdown-items {
-display: flex;
-flex-direction: column;
-gap: 0;
-border: 1px solid var(--border);
-}
-
-.breakdown-item {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 14px 20px;
-border-bottom: 1px solid var(--border);
-transition: background 0.2s;
-}
-
-.breakdown-item:last-child { border-bottom: none; }
-.breakdown-item:hover { background: var(--white-ghost); }
-
-.bi-label {
-font-family: var(--font-ui);
-font-size: 11px;
-font-weight: 400;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(--silver);
-}
-
-.bi-value {
-font-family: var(--font-body);
-font-size: 13px;
-font-weight: 400;
-color: var(--white);
-}
-
-/* Editing timeline */
-.edit-timeline {
-margin-top: 32px;
-}
-
-.timeline-label {
-font-family: var(--font-ui);
-font-size: 10px;
-font-weight: 500;
-letter-spacing: 0.4em;
-text-transform: uppercase;
-color: var(--silver-dim);
-margin-bottom: 16px;
-}
-
-.timeline-track {
-display: flex;
-height: 32px;
-gap: 2px;
-border: 1px solid var(--border);
-overflow: hidden;
-}
-
-.track-segment {
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: var(--font-ui);
-font-size: 8px;
-font-weight: 500;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: rgba(255,255,255,0.5);
-}
-
-.seg-cut { background: rgba(92,157,220,0.12); flex: 3; }
-.seg-grade { background: rgba(200,169,110,0.1); flex: 2; }
-.seg-motion { background: rgba(130,200,130,0.08); flex: 2; }
-.seg-sfx { background: rgba(200,100,100,0.08); flex: 1.5; }
-.seg-audio { background: rgba(180,100,200,0.08); flex: 2; }
-.seg-export { background: rgba(255,255,255,0.04); flex: 1; }
 
 /* ─── SKILLS ─── */
 .skills-section {
@@ -1628,6 +1445,7 @@ Watch Showreel
 <div class="filter-pill">Narrative</div>
 <div class="filter-pill">Social</div>
 <div class="filter-pill">Music</div>
+<div class="filter-pill">3D</div>
 </div>
 </div>
 
@@ -1636,91 +1454,6 @@ Watch Showreel
 
 <div class="divider"></div>
 
-<!-- ─── PROJECT DETAIL ─── -->
-<section class="project-detail">
-<div class="section-label">Project Spotlight</div>
-<h2 class="section-heading" style="margin-bottom:56px">Breakdown & <em>Process</em></h2>
-
-<div class="project-inner">
-<div class="project-left">
-<div class="project-video-main">
-<div class="project-scene">
-<div class="project-scene-el">
-<div class="scene-line" style="top:25%"></div>
-<div class="scene-line" style="top:50%"></div>
-<div class="scene-line" style="top:75%"></div>
-<div class="scene-vignette"></div>
-</div>
-<div class="project-play">
-<div class="project-play-icon"></div>
-</div>
-</div>
-</div>
-
-<div class="before-after">
-<div class="ba-frame ba-before">
-<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-<div style="width:60%;height:50%;border:1px solid rgba(255,255,255,0.05);background:rgba(255,255,255,0.02);"></div>
-</div>
-<div class="ba-label">Before Grade</div>
-</div>
-<div class="ba-frame ba-after">
-<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
-<div style="width:60%;height:50%;border:1px solid rgba(92,157,220,0.15);background:rgba(92,157,220,0.05);"></div>
-</div>
-<div class="ba-label">After Grade</div>
-</div>
-</div>
-
-<div class="edit-timeline" style="margin-top:24px;">
-<div class="timeline-label">Editing Timeline — Workflow Layers</div>
-<div class="timeline-track">
-<div class="track-segment seg-cut">Cut</div>
-<div class="track-segment seg-grade">Grade</div>
-<div class="track-segment seg-motion">Motion</div>
-<div class="track-segment seg-sfx">SFX</div>
-<div class="track-segment seg-audio">Audio</div>
-<div class="track-segment seg-export">Export</div>
-</div>
-</div>
-</div>
-
-<div class="project-right">
-<div class="project-tag">
-<span style="display:block;width:20px;height:1px;background:var(--blue-accent);"></span>
-Commercial · Brand Film
-</div>
-<h3 class="project-title">"A New Kind of<br><em>Tomorrow"</em> — Brand Campaign</h3>
-<p class="project-desc">A full-length brand film for a lifestyle client, combining documentary-style B-roll with scripted narrative sequences. The edit required precise emotional pacing, motion graphics integration, and cinematic color grading to achieve a premium feel aligned with the brand vision.</p>
-
-<div class="project-breakdown-title">Project Details</div>
-<div class="breakdown-items">
-<div class="breakdown-item">
-<span class="bi-label">Client</span>
-<span class="bi-value">Horizon Brand Studio</span>
-</div>
-<div class="breakdown-item">
-<span class="bi-label">Deliverable</span>
-<span class="bi-value">3-min Brand Film + 4 Social Cuts</span>
-</div>
-<div class="breakdown-item">
-<span class="bi-label">Software</span>
-<span class="bi-value">Premiere Pro · After Effects · DaVinci</span>
-</div>
-<div class="breakdown-item">
-<span class="bi-label">Turnaround</span>
-<span class="bi-value">6 Days</span>
-</div>
-<div class="breakdown-item">
-<span class="bi-label">Views</span>
-<span class="bi-value">2.4M across platforms</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
 
 <!-- ─── SKILLS ─── -->
 <section class="skills-section">
@@ -1952,17 +1685,35 @@ Currently available for new roles
 // AUTO VIDEO PROJECTS
 
 const videoFiles = [
-    "project1.mp4",
-    "project2.mp4",
+
+    {
+        file: "project1.mp4",
+        category: "commercial",
+        title: "Nike Spec Ad"
+    },
+
+    {
+        file: "project2.mp4",
+        category: "3d",
+        title: "3D Animation Reel"
+    },
+
+    {
+        file: "project3.mp4",
+        category: "social",
+        title: "Instagram Campaign"
+    }
+
 ];
 
 const grid = document.getElementById('videoGrid');
 
-videoFiles.forEach((videoName, index) => {
+videoFiles.forEach((video, index) => {
 
     const card = document.createElement('div');
 
     card.className = 'video-card';
+    card.dataset.category = video.category;
 
     card.innerHTML = `
     <div class="video-thumb">
@@ -1975,13 +1726,13 @@ videoFiles.forEach((videoName, index) => {
             playsinline
             preload="metadata"
         >
-            <source src="/static/videos/${videoName}" type="video/mp4">
+            <source src="/static/videos/${video.file}" type="video/mp4">
         </video>
 
         <div class="thumb-overlay"></div>
 
         <div class="thumb-category">
-            Project ${index + 1}
+            ${video.title}
         </div>
 
         <div class="thumb-duration">
@@ -1991,11 +1742,79 @@ videoFiles.forEach((videoName, index) => {
         <div class="thumb-play">
             <div class="thumb-play-icon"></div>
         </div>
+        <button class="video-unmute">
+            ×
+</button>
 
     </div>
     `;
 
     grid.appendChild(card);
+
+});
+// UNMUTE BUTTON
+
+document.querySelectorAll('.video-card').forEach(card => {
+
+    const video = card.querySelector('.project-video');
+    const button = card.querySelector('.video-unmute');
+
+    button.addEventListener('click', () => {
+
+        if(video.muted){
+
+            video.muted = false;
+            button.innerHTML = '◉';
+
+        } else {
+
+            video.muted = true;
+            button.innerHTML = '×';
+
+        }
+
+    });
+
+});
+
+
+// FILTER PROJECTS
+
+const filterButtons = document.querySelectorAll('.filter-pill');
+
+filterButtons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        filterButtons.forEach(btn =>
+            btn.classList.remove('active')
+        );
+
+        button.classList.add('active');
+
+        const filter =
+            button.textContent.toLowerCase();
+
+        document
+            .querySelectorAll('.video-card')
+            .forEach(card => {
+
+                if(
+                    filter === 'all' ||
+                    card.dataset.category === filter
+                ){
+
+                    card.style.display = 'block';
+
+                } else {
+
+                    card.style.display = 'none';
+
+                }
+
+            });
+
+    });
 
 });
 </script>
