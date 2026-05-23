@@ -343,306 +343,69 @@ transition: background 0.3s, color 0.3s;
 }
 
 /* ─── VIDEO PLAYER ─── */
-.hero-player {
-position: relative;
-width: 100%;
-max-width: 960px;
-aspect-ratio: 16/9;
-background: var(--charcoal);
-border: 1px solid var(--border);
-overflow: hidden;
-margin-bottom: 48px;
-box-shadow:
-0 0 0 1px rgba(255,255,255,0.03),
-0 40px 120px rgba(0,0,0,0.8),
-0 0 80px var(--blue-glow);
+.hero-player{
+    position: relative;
+
+    width: 100%;
+    max-width: 1100px;
+
+    aspect-ratio: 16/9;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    background: #000;
+
+    margin: 0 auto 48px;
+
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.03),
+        0 40px 120px rgba(0,0,0,0.75),
+        0 0 80px rgba(92,157,220,0.08);
 }
 
-.player-cinematic {
-position: absolute;
-inset: 0;
-background: linear-gradient(135deg,
-#0d1117 0%,
-#111820 25%,
-#0a0f14 50%,
-#131a22 75%,
-#0d1117 100%
-);
-display: flex;
-align-items: center;
-justify-content: center;
+.real-video{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #000;
 }
 
-/* Fake cinematic frame with letterbox */
-.letterbox-top, .letterbox-bottom {
-position: absolute;
-left:0; right:0;
-height: 8%;
-background: #000;
-z-index:2;
-}
-.letterbox-top { top:0; }
-.letterbox-bottom { bottom:0; }
+/* Premium border glow */
 
-.player-scene {
-position: absolute;
-inset: 8% 0;
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-}
+.player-border-glow{
+    position: absolute;
+    inset: 0;
 
-/* Cinematic scene elements */
-.scene-bg {
-position: absolute;
-inset: 0;
-background: linear-gradient(to bottom,
-#050810 0%,
-#0a1220 40%,
-#06080e 100%
-);
-}
+    pointer-events: none;
 
-.scene-city {
-position: absolute;
-bottom: 0;
-left: 50%;
-transform: translateX(-50%);
-width: 100%;
-height: 60%;
-background:
-repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(30,50,80,0.2) 30px, rgba(30,50,80,0.2) 31px),
-linear-gradient(to top, rgba(20,35,60,0.8) 0%, transparent 100%);
-}
+    border-radius: 22px;
 
-.scene-horizon {
-position: absolute;
-bottom: 35%;
-left: 0; right: 0;
-height: 1px;
-background: linear-gradient(90deg, transparent, rgba(92,157,220,0.15), rgba(200,169,110,0.1), transparent);
-}
-
-.scene-glow-1 {
-position: absolute;
-bottom: 20%;
-left: 30%;
-width: 200px; height: 80px;
-background: radial-gradient(ellipse, rgba(200,169,110,0.12) 0%, transparent 70%);
-border-radius: 50%;
-}
-.scene-glow-2 {
-position: absolute;
-bottom: 25%;
-right: 25%;
-width: 150px; height: 60px;
-background: radial-gradient(ellipse, rgba(92,157,220,0.1) 0%, transparent 70%);
-border-radius: 50%;
-}
-
-.scene-stars {
-position: absolute;
-top: 5%; left: 0; right: 0;
-height: 40%;
-}
-
-.star {
-position: absolute;
-border-radius: 50%;
-background: white;
-opacity: 0.4;
-animation: twinkle 3s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-0%,100% { opacity:0.3; }
-50% { opacity:0.7; }
-}
-
-/* Player overlay UI */
-.player-ui {
-position: absolute;
-inset: 0;
-z-index: 5;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-padding: 20px 24px;
-}
-
-.player-top-bar {
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
-}
-
-.player-label {
-font-family: var(--font-ui);
-font-size: 9px;
-letter-spacing: 0.35em;
-text-transform: uppercase;
-color: rgba(255,255,255,0.4);
-border: 1px solid rgba(255,255,255,0.1);
-padding: 4px 10px;
-}
-
-.player-rec {
-display: flex;
-align-items: center;
-gap: 6px;
-font-family: var(--font-ui);
-font-size: 9px;
-letter-spacing: 0.2em;
-color: rgba(255,255,255,0.35);
-}
-
-.rec-dot {
-width: 6px; height: 6px;
-border-radius: 50%;
-background: #cc4444;
-animation: pulse-rec 2s ease-in-out infinite;
-}
-
-@keyframes pulse-rec { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.player-center-btn {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 68px; height: 68px;
-border-radius: 50%;
-background: rgba(255,255,255,0.08);
-border: 1.5px solid rgba(255,255,255,0.2);
-backdrop-filter: blur(8px);
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: all 0.3s;
-z-index: 6;
-}
-
-.player-center-btn:hover {
-background: rgba(255,255,255,0.15);
-border-color: rgba(255,255,255,0.4);
-transform: translate(-50%, -50%) scale(1.08);
-}
-
-.play-icon {
-width: 0;
-height: 0;
-border-top: 11px solid transparent;
-border-bottom: 11px solid transparent;
-border-left: 18px solid white;
-margin-left: 4px;
-opacity: 0.9;
-}
-
-.player-bottom-bar {
-display: flex;
-flex-direction: column;
-gap: 10px;
-}
-
-.player-title-block {
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
-}
-
-.player-film-title {
-font-family: var(--font-display);
-font-size: 20px;
-font-weight: 300;
-font-style: italic;
-color: rgba(255,255,255,0.85);
-letter-spacing: 0.02em;
-}
-
-.player-duration {
-font-family: var(--font-ui);
-font-size: 11px;
-color: rgba(255,255,255,0.4);
-letter-spacing: 0.15em;
-}
-
-.player-progress-wrap {
-display: flex;
-align-items: center;
-gap: 12px;
-}
-
-.player-progress-bar {
-flex: 1;
-height: 2px;
-background: rgba(255,255,255,0.1);
-border-radius: 1px;
-overflow: hidden;
-}
-
-.player-progress-fill {
-width: 35%;
-height: 100%;
-background: linear-gradient(90deg, var(--blue-accent), var(--gold));
-border-radius: 1px;
-}
-
-.player-controls {
-display: flex;
-align-items: center;
-gap: 16px;
-}
-
-.ctrl-btn {
-width: 28px; height: 28px;
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0.5;
-cursor: pointer;
-transition: opacity 0.2s;
-}
-
-.ctrl-btn:hover { opacity: 1; }
-
-.ctrl-btn svg { width: 16px; height: 16px; fill: white; }
-
-.ctrl-volume {
-display: flex;
-align-items: center;
-gap: 8px;
-margin-left: auto;
-}
-
-.volume-bar {
-width: 60px; height: 2px;
-background: rgba(255,255,255,0.15);
-border-radius: 1px;
-overflow: hidden;
-}
-
-.volume-fill {
-width: 70%;
-height: 100%;
-background: rgba(255,255,255,0.4);
-}
-
-/* Player border glow */
-.player-border-glow {
-position: absolute;
-inset: -1px;
-background: linear-gradient(135deg, rgba(92,157,220,0.1), transparent, rgba(200,169,110,0.05));
-pointer-events: none;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.03),
+        inset 0 0 80px rgba(92,157,220,0.05);
 }
 
 /* ─── HERO BUTTONS ─── */
-.hero-buttons {
-display: flex;
-gap: 16px;
-align-items: center;
-position: relative;
+.hero-buttons{
+    width: 100%;
+    max-width: 1180px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    margin: 0 auto;
+
+    position: relative;
+    z-index: 2;
 }
 
 .btn-primary {
@@ -1804,66 +1567,23 @@ Creating engaging short-form and cinematic content with strong storytelling and 
 </div>
 <!-- Video Player -->
 <div class="hero-player">
-<div class="player-cinematic">
-<!-- Letterbox -->
-<div class="letterbox-top"></div>
-<div class="letterbox-bottom"></div>
 
-<div class="player-scene">
-<div class="scene-bg"></div>
-<div class="scene-city"></div>
-<div class="scene-horizon"></div>
-<div class="scene-glow-1"></div>
-<div class="scene-glow-2"></div>
-<div class="scene-stars" id="stars"></div>
-</div>
+    <video
+    class="real-video"
+    poster="/static/pictures/video-thumbnail.jpg"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    controls
+>
+    <source src="/static/videos/showreel.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
-<!-- Player UI Overlay -->
-<div class="player-ui">
-<div class="player-top-bar">
-<div class="player-label">Showreel 2024</div>
-<div class="player-rec">
-<div class="rec-dot"></div>
-HD 1080p
-</div>
-</div>
+    <div class="player-border-glow"></div>
 
-<div class="player-center-btn">
-<div class="play-icon"></div>
-</div>
-
-<div class="player-bottom-bar">
-<div class="player-title-block">
-<div class="player-film-title">Alex Mercer — 2024 Reel</div>
-<div class="player-duration">2:14</div>
-</div>
-<div class="player-progress-wrap">
-<div class="player-progress-bar">
-<div class="player-progress-fill"></div>
-</div>
-</div>
-<div class="player-controls">
-<div class="ctrl-btn">
-<svg viewBox="0 0 24 24"><path d="M6 6h2v12H6V6zm3.5 6l8.5 6V6l-8.5 6z"/></svg>
-</div>
-<div class="ctrl-btn">
-<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-</div>
-<div class="ctrl-btn">
-<svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zm5.5-2.86v2.72L18 12l-4.5 3.14V6z" opacity=".5"/>
-<path d="M13.5 6.14V9.86L17.03 12l-3.53 2.14v2.72L19 12l-5.5-5.86z"/></svg>
-</div>
-<div class="ctrl-volume">
-<div class="ctrl-btn">
-<svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-</div>
-<div class="volume-bar"><div class="volume-fill"></div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="player-border-glow"></div>
 </div>
 
 <!-- CTA Buttons -->
