@@ -586,53 +586,68 @@ group: true;
 .video-card:nth-child(8) { margin-top: 16px; }
 .video-card:nth-child(10) { margin-top: 48px; }
 
-.video-thumb {
-width: 100%;
-aspect-ratio: 9/16;
-position: relative;
-overflow: hidden;
-background: var(--charcoal-light);
-border: 1px solid var(--border);
-transition: border-color 0.3s, transform 0.4s;
+.video-thumb{
+    width: 100%;
+    aspect-ratio: 9/16;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #000;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 18px;
+
+    transition:
+        transform .45s ease,
+        border-color .45s ease,
+        box-shadow .45s ease;
+}
+.project-video{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    filter:
+        brightness(.82)
+        saturate(.92);
+
+    transition:
+        transform .7s ease,
+        filter .5s ease;
+}
+
+.video-card:hover .project-video{
+    transform: scale(1.04);
+
+    filter:
+        brightness(1)
+        saturate(1.05);
+}
+
+.thumb-overlay{
+    z-index: 2;
+}
+
+.thumb-category,
+.thumb-duration,
+.thumb-play{
+    z-index: 3;
 }
 
 .video-card:hover .video-thumb {
 border-color: rgba(255,255,255,0.15);
 transform: translateY(-4px);
-}
-
-.thumb-inner {
-position: absolute;
-inset: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
-/* Unique visual for each card */
-.thumb-1 { background: linear-gradient(160deg, #0d1520 0%, #1a2535 50%, #0a0f18 100%); }
-.thumb-2 { background: linear-gradient(160deg, #150d0d 0%, #2a1515 50%, #100808 100%); }
-.thumb-3 { background: linear-gradient(160deg, #0d150d 0%, #182518 50%, #080f08 100%); }
-.thumb-4 { background: linear-gradient(160deg, #150d20 0%, #261535 50%, #100a1a 100%); }
-.thumb-5 { background: linear-gradient(160deg, #15120d 0%, #281e10 50%, #0f0c07 100%); }
-.thumb-6 { background: linear-gradient(160deg, #0d1520 0%, #0f2030 50%, #081015 100%); }
-.thumb-7 { background: linear-gradient(160deg, #1a0d0d 0%, #300f0f 50%, #150808 100%); }
-.thumb-8 { background: linear-gradient(160deg, #0d1015 0%, #141820 50%, #080c10 100%); }
-.thumb-9 { background: linear-gradient(160deg, #150f0d 0%, #251810 50%, #100b07 100%); }
-.thumb-10 { background: linear-gradient(160deg, #0d1020 0%, #12183a 50%, #08100f 100%); }
-
-.thumb-atmosphere {
-position: absolute;
-inset: 0;
-opacity: 0.4;
-}
-
-.thumb-glow {
-position: absolute;
-width: 60%;
-height: 40%;
-border-radius: 50%;
-filter: blur(30px);
 }
 
 .thumb-play {
@@ -1932,59 +1947,56 @@ Currently available for new roles
 </footer>
 
 <script>
-// Generate stars
-const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 60; i++) {
-const star = document.createElement('div');
-star.className = 'star';
-const size = Math.random() * 2 + 0.5;
-star.style.cssText = `
-left: ${Math.random() * 100}%;
-top: ${Math.random() * 100}%;
-width: ${size}px;
-height: ${size}px;
-animation-delay: ${Math.random() * 4}s;
-animation-duration: ${2 + Math.random() * 3}s;
-`;
-starsContainer.appendChild(star);
-}
 
 // Video grid data
-const projects = [
-{ title: 'Drift — Brand Film', cat: 'Commercial', sw: 'Pr · Ae', dur: '2:45', c: 1, tgl: [50, 70, 'rgba(92,157,220,0.18)', 'bottom', 'rgba(200,169,110,0.12)'] },
-{ title: 'Pulse Social Series', cat: 'Social', sw: 'Pr · DR', dur: '0:30', c: 2, tgl: [60, 60, 'rgba(200,80,80,0.15)', 'center', 'rgba(200,80,80,0.08)'] },
-{ title: 'Solstice — Short Film', cat: 'Narrative', sw: 'Pr · Ae · DR', dur: '8:12', c: 3, tgl: [40, 65, 'rgba(100,200,100,0.12)', 'bottom', 'rgba(80,160,80,0.08)'] },
-{ title: 'Mirage EP Visuals', cat: 'Music', sw: 'Ae · Pr', dur: '3:58', c: 4, tgl: [55, 60, 'rgba(140,80,220,0.18)', 'center', 'rgba(100,50,180,0.1)'] },
-{ title: 'Summit Docs', cat: 'Documentary', sw: 'Pr · DR', dur: '22:00', c: 5, tgl: [45, 55, 'rgba(200,140,60,0.15)', 'bottom', 'rgba(180,120,40,0.08)'] },
-{ title: 'Cascade — Rebrand', cat: 'Commercial', sw: 'Ae · Ps', dur: '1:15', c: 6, tgl: [50, 65, 'rgba(60,140,220,0.18)', 'center', 'rgba(40,120,200,0.08)'] },
-{ title: 'Ember Apparel Campaign', cat: 'Commercial', sw: 'Pr · DR', dur: '0:45', c: 7, tgl: [60, 55, 'rgba(240,100,60,0.18)', 'bottom', 'rgba(200,80,40,0.1)'] },
-{ title: 'The Archive', cat: 'Narrative', sw: 'Pr · Ae', dur: '12:30', c: 8, tgl: [40, 60, 'rgba(140,160,180,0.12)', 'center', 'rgba(100,130,160,0.06)'] },
-{ title: 'Ryvn — Music Video', cat: 'Music', sw: 'Ae · Pr · DR', dur: '4:20', c: 9, tgl: [55, 70, 'rgba(200,140,80,0.15)', 'bottom', 'rgba(180,120,60,0.08)'] },
-{ title: 'Kinetic Typography Pack', cat: 'Motion', sw: 'Ae', dur: '1:00', c: 10, tgl: [50, 60, 'rgba(80,200,180,0.15)', 'center', 'rgba(60,180,160,0.08)'] },
+// AUTO VIDEO PROJECTS
+
+const videoFiles = [
+    "project1.mp4",
+    "project2.mp4",
 ];
 
 const grid = document.getElementById('videoGrid');
-projects.forEach((p, i) => {
-const glowColors = ['rgba(92,157,220,0.18)','rgba(200,80,80,0.15)','rgba(100,200,100,0.12)','rgba(140,80,220,0.18)','rgba(200,140,60,0.15)','rgba(60,140,220,0.18)','rgba(240,100,60,0.18)','rgba(140,160,180,0.12)','rgba(200,140,80,0.15)','rgba(80,200,180,0.15)'];
-const glowPos = ['30% 70%','50% 50%','40% 80%','60% 40%','35% 70%','50% 60%','45% 75%','55% 50%','40% 65%','50% 55%'];
-const card = document.createElement('div');
-card.className = 'video-card';
-card.innerHTML = `
-<div class="video-thumb thumb-${p.c}">
-<div class="thumb-inner">
-<div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at ${glowPos[i]},${glowColors[i]},transparent)"></div>
-<div class="thumb-play"><div class="thumb-play-icon"></div></div>
-</div>
-<div class="thumb-overlay"></div>
-<div class="thumb-category">${p.cat}</div>
-<div class="thumb-duration">${p.dur}</div>
-</div>
-<div class="video-info">
-<div class="video-title">${p.title}</div>
-<div class="video-meta">${p.sw}</div>
-</div>
-`;
-grid.appendChild(card);
+
+videoFiles.forEach((videoName, index) => {
+
+    const card = document.createElement('div');
+
+    card.className = 'video-card';
+
+    card.innerHTML = `
+    <div class="video-thumb">
+
+        <video
+            class="project-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+        >
+            <source src="/static/videos/${videoName}" type="video/mp4">
+        </video>
+
+        <div class="thumb-overlay"></div>
+
+        <div class="thumb-category">
+            Project ${index + 1}
+        </div>
+
+        <div class="thumb-duration">
+            Reel
+        </div>
+
+        <div class="thumb-play">
+            <div class="thumb-play-icon"></div>
+        </div>
+
+    </div>
+    `;
+
+    grid.appendChild(card);
+
 });
 </script>
 </body>
