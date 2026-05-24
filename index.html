@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" sizes="180x180" type="image/png" href="/static/pictures/logo1.png">
+<link rel="icon" sizes="180x180" type="image/png" href="./static/pictures/logo1.png">
 <title>Amarthyai</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -153,195 +153,554 @@ transition: background 0.3s, color 0.3s;
 /* ─── HERO ─── */
 /* ───────────────── HERO CONTENT ───────────────── */
 
-
-.hero{
+/* ─── HERO ─── */
+.hero {
     min-height: 100vh;
-
     position: relative;
     overflow: hidden;
-
-    padding: 140px 56px 80px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
-.hero-bg{
+#hero-canvas {
     position: absolute;
     inset: 0;
-
-    background:
-    radial-gradient(
-        ellipse 80% 60% at 50% 20%,
-        rgba(50,90,160,0.06) 0%,
-        transparent 70%
-    ),
-    linear-gradient(
-        180deg,
-        #0a0a0a 0%,
-        #080808 100%
-    );
-
+    width: 100%;
+    height: 100%;
     z-index: 0;
 }
 
-
-
-.hero-content{
-    position: relative;
-    z-index: 2;
-
-    width: 100%;
-    max-width: 1180px;
-
-    display: grid;
-    grid-template-columns: 1fr 520px;
-    align-items: center;
-    gap: 64px;
-
-    margin: 80px auto 90px;
-}
-
-/* LEFT SIDE */
-
-.hero-text{
-    position: relative;
-    z-index: 2;
-}
-
-/* RIGHT SIDE */
-
-.hero-picture{
-    position: relative;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* OUTER FRAME */
-
-.hero-picture::before{
-    content: "";
-
+/* ── Ambient light orbs ── */
+.hero-orb {
     position: absolute;
-    inset: -22px;
-
-    border-radius: 34px;
-
-    border: 1px solid rgba(92,157,220,0.10);
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(92,157,220,0.06),
-            transparent 60%
-        );
-
-    box-shadow:
-        inset 0 0 80px rgba(92,157,220,0.03),
-        0 0 120px rgba(0,0,0,0.45);
-
-    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
 }
 
-/* IMAGE */
+.hero-orb-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(50,90,200,0.07), transparent 70%);
+    top: -10%; left: -5%;
+    animation: heroOrbFloat1 12s ease-in-out infinite;
+}
 
-.hero-picture .pic{
-    width: 420px;
-    height: 520px;
-    object-fit: cover;
-    border-radius: 24px;
+.hero-orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,169,110,0.05), transparent 70%);
+    bottom: 0%; right: 5%;
+    animation: heroOrbFloat2 15s ease-in-out infinite;
+}
 
+.hero-orb-3 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(92,157,220,0.06), transparent 70%);
+    top: 50%; left: 40%;
+    animation: heroOrbFloat1 10s ease-in-out infinite reverse;
+}
+
+@keyframes heroOrbFloat1 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px,-40px) scale(1.08); }
+    66% { transform: translate(-20px,20px) scale(0.94); }
+}
+
+@keyframes heroOrbFloat2 {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-40px,-30px) scale(1.1); }
+}
+
+/* ── Main layout ── */
+.hero-inner {
     position: relative;
     z-index: 2;
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.55),
-        0 0 50px rgba(92,157,220,0.08);
-
-    transition: transform .45s ease,
-                box-shadow .45s ease;
+    width: 100%;
+    max-width: 1280px;
+    padding: 120px 64px 80px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 80px;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.hero-picture .pic:hover{
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,0.65),
-        0 0 80px rgba(92,157,220,0.14);
+/* ── LEFT ── */
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
-/* TEXT ALIGNMENT */
+/* status badge */
+.hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(78,200,126,0.2);
+    background: rgba(78,200,126,0.04);
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 36px;
+    width: fit-content;
+    animation: fadeSlideUp 0.7s ease 0.1s both;
+}
 
+.hero-status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #4ec87e;
+    animation: pulse-avail 2.5s ease-in-out infinite;
+}
+
+.hero-status-text {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #4ec87e;
+}
+
+/* headline */
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(52px, 6vw, 88px);
+    font-size: clamp(58px, 6.5vw, 96px);
     font-weight: 300;
-    line-height: 1.02;
+    line-height: 1.0;
     letter-spacing: -0.03em;
-
-    text-align: left;
-
-    margin-bottom: 22px;
-
     color: var(--white);
+    margin-bottom: 28px;
+    animation: fadeSlideUp 0.8s ease 0.2s both;
 }
 
 .hero-title em {
     font-style: italic;
     color: var(--white-dim);
-    font-weight: 300;
+}
+
+.hero-title .accent-word {
+    position: relative;
+    display: inline-block;
+    color: var(--blue-accent);
+}
+
+/* animated underline */
+.hero-title .accent-word::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--blue-accent), var(--gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: lineReveal 0.8s ease 1.2s forwards;
+}
+
+@keyframes lineReveal {
+    to { transform: scaleX(1); }
 }
 
 .hero-subtitle {
     font-family: var(--font-body);
     font-size: 17px;
     font-weight: 300;
-
     color: var(--silver);
-
     line-height: 1.8;
-
-    max-width: 560px;
-
-    text-align: left;
+    max-width: 520px;
+    margin-bottom: 48px;
+    animation: fadeSlideUp 0.8s ease 0.35s both;
 }
-/* BADGE */
 
-.hero-badge{
+/* ── Marquee skills strip ── */
+.hero-skills-strip {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+    animation: fadeSlideUp 0.8s ease 0.45s both;
+}
+
+.hero-skill-tag {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    transition: all 0.3s;
+    cursor: default;
+}
+
+.hero-skill-tag:hover {
+    color: var(--white);
+    border-color: rgba(92,157,220,0.4);
+    background: rgba(92,157,220,0.05);
+    transform: translateY(-2px);
+}
+
+/* ── CTA buttons ── */
+.hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s ease 0.55s both;
+}
+
+.hero-btn-primary {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    padding: 14px 36px;
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
-
-    margin-bottom: 32px;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, transform 0.3s;
 }
 
-/* RESPONSIVE */
+.hero-btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--blue-accent);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
 
-@media (max-width: 980px){
+.hero-btn-primary:hover::before { transform: translateX(0); }
+.hero-btn-primary:hover { color: white; transform: translateY(-2px); }
+.hero-btn-primary span { position: relative; z-index: 1; }
 
-    .hero-content{
+.hero-btn-secondary {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 13px 28px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.hero-btn-secondary:hover {
+    border-color: rgba(255,255,255,0.3);
+    background: var(--white-ghost);
+    transform: translateY(-2px);
+}
+
+.hero-btn-ghost {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s, gap 0.3s;
+}
+
+.hero-btn-ghost:hover { color: var(--white); gap: 12px; }
+
+/* ── Scroll indicator ── */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 3;
+    animation: fadeSlideUp 1s ease 1.4s both;
+}
+
+.scroll-line {
+    width: 40px; height: 1px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--blue-accent);
+    animation: scrollSlide 2.2s ease-in-out 1.8s infinite;
+}
+
+@keyframes scrollSlide {
+    0% { left: -100%; }
+    50% { left: 0%; }
+    100% { left: 100%; }
+}
+
+.scroll-text {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+}
+
+/* ── RIGHT: 3D scene ── */
+.hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeSlideUp 1s ease 0.3s both;
+}
+
+/* Main portrait frame */
+.hero-portrait-frame {
+    position: relative;
+    width: 380px;
+    height: 480px;
+}
+
+/* The image */
+.hero-portrait-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.6),
+        0 0 60px rgba(92,157,220,0.06);
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.hero-portrait-frame:hover .hero-portrait-img {
+    transform: translateY(-6px);
+}
+
+/* Glassy corner accent */
+.hero-portrait-frame::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border-radius: 34px;
+    border: 1px solid rgba(92,157,220,0.1);
+    background: radial-gradient(circle at top left, rgba(92,157,220,0.05), transparent 60%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Corner brackets */
+.portrait-bracket {
+    position: absolute;
+    width: 20px; height: 20px;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.portrait-bracket::before,
+.portrait-bracket::after {
+    content: '';
+    position: absolute;
+    background: var(--blue-accent);
+}
+
+.portrait-bracket::before { width: 100%; height: 1px; top: 0; left: 0; }
+.portrait-bracket::after  { width: 1px; height: 100%; top: 0; left: 0; }
+
+.pb-tl { top: -2px;  left: -2px; }
+.pb-tr { top: -2px;  right: -2px; transform: scaleX(-1); }
+.pb-bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+.pb-br { bottom: -2px; right: -2px; transform: scale(-1); }
+
+/* ── Floating stat chips ── */
+.hero-chip {
+    position: absolute;
+    background: rgba(10,18,28,0.88);
+    border: 1px solid rgba(92,157,220,0.18);
+    backdrop-filter: blur(14px);
+    border-radius: 14px;
+    padding: 14px 18px;
+    z-index: 5;
+    white-space: nowrap;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+.hero-chip-1 {
+    top: 10%;
+    right: -22%;
+    animation: chipFloat 5s ease-in-out infinite;
+}
+
+.hero-chip-2 {
+    bottom: 22%;
+    left: -24%;
+    animation: chipFloat 6s ease-in-out infinite reverse;
+}
+
+.hero-chip-3 {
+    bottom: 6%;
+    right: -18%;
+    animation: chipFloat 4.5s ease-in-out infinite 1s;
+}
+
+@keyframes chipFloat {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+.chip-val {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.chip-label {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-top: 3px;
+}
+
+.chip-icon {
+    font-size: 13px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* ── Showreel strip below ── */
+.hero-reel-strip {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    padding: 0 64px 80px;
+}
+
+.reel-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.reel-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reel-label::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--blue-accent);
+}
+
+.reel-view-link {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s, gap 0.3s;
+}
+
+.reel-view-link:hover { color: var(--white); gap: 12px; }
+
+.hero-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: #000;
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.02),
+        0 40px 120px rgba(0,0,0,0.75),
+        0 0 100px rgba(92,157,220,0.06);
+}
+
+.real-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+}
+
+.player-border-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 20px;
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.03),
+        inset 0 0 80px rgba(92,157,220,0.04);
+}
+
+/* ── Shared fade animation ── */
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 980px) {
+    .hero-inner {
         grid-template-columns: 1fr;
-        gap: 54px;
-
+        padding: 120px 32px 60px;
+        gap: 60px;
         text-align: center;
+        min-height: auto;
     }
-
-    .hero-title,
-    .hero-subtitle{
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-picture .pic{
-        max-width: 340px;
-    }
+    .hero-status, .hero-skills-strip, .hero-cta-row { justify-content: center; }
+    .hero-subtitle { margin-left: auto; margin-right: auto; }
+    .hero-right { justify-content: center; }
+    .hero-portrait-frame { width: 280px; height: 360px; }
+    .hero-chip-1 { right: -8%; }
+    .hero-chip-2 { left: -8%; }
+    .hero-chip-3 { right: -6%; }
+    .hero-scroll-hint { display: none; }
+    .hero-reel-strip { padding: 0 32px 60px; }
 }
-
 /* ─── VIDEO PLAYER ─── */
 .hero-player{
     position: relative;
@@ -1879,7 +2238,7 @@ to { opacity:1; transform: translateY(0); }
  
 <nav>
     <a href="/" class="nav-logo">
-        <img class="pic" src="/static/pictures/logo1.png" alt="Logo">
+        <img class="pic" src="./static/pictures/logo1.png" alt="Logo">
         Amarthyai
     </a>
 <div class="nav-links-box">
@@ -1891,58 +2250,125 @@ to { opacity:1; transform: translateY(0); }
     </ul>
 </div>
 
-    <a href="/static/pdf/cv.pdf" download="Amarthyai_resume.pdf" class="nav-cta">Download Resume</a>
+    <a href="./static/pdf/cv.pdf" download="Amarthyai_resume.pdf" class="nav-cta">Download Resume</a>
 </nav>
 
 <!-- ─── HERO ─── -->
+<!-- ─── HERO ─── -->
 <section class="hero">
-<div class="hero-bg"></div>
-<div class="hero-content">
-<div class="hero-text">
-<div class="hero-badge">Available for Full-Time Roles</div>
+    <canvas id="hero-canvas"></canvas>
 
-<h1 class="hero-title">
-Video Editor<br><em>&amp; Motion Designer</em>
-</h1>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
 
-<p class="hero-subtitle">
-Creating engaging short-form and cinematic content with strong storytelling and modern editing techniques.
-</p>
-</div>
-<div class="hero-picture">
-    <img class="pic" src="/static/pictures/cropamirtha.png" alt="Hero Picture">
-</div>
-</div>
-<!-- Video Player -->
-<div class="hero-player">
+    <!-- Main grid -->
+    <div class="hero-inner">
 
-    <video
-    class="real-video"
-    poster="/static/pictures/video-thumbnail.jpg"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    controls
->
-    <source src="/static/videos/showreel.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+        <!-- LEFT -->
+        <div class="hero-left">
 
-    <div class="player-border-glow"></div>
+            <div class="hero-status">
+                <div class="hero-status-dot"></div>
+                <span class="hero-status-text">Available for Full-Time Roles</span>
+            </div>
 
-</div>
+            <h1 class="hero-title">
+                <span class="accent-word">Video</span> Editor<br>
+                <em>&amp; Motion Designer</em>
+            </h1>
 
-<!-- CTA Buttons -->
-<div class="hero-buttons">
-<a href="#" class="btn-primary">
-<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-Watch Showreel
-</a>
-<a href="#" class="btn-secondary">View Projects</a>
-<a href="#" class="btn-ghost">Download Resume <span class="btn-arrow">→</span></a>
-</div>
+            <p class="hero-subtitle">
+                Creating engaging short-form and cinematic content with strong storytelling, precise pacing, and modern editing techniques.
+            </p>
+
+            <div class="hero-skills-strip">
+                <span class="hero-skill-tag">Premiere Pro</span>
+                <span class="hero-skill-tag">After Effects</span>
+                <span class="hero-skill-tag">Blender</span>
+                <span class="hero-skill-tag">Maya</span>
+                <span class="hero-skill-tag">Nuke</span>
+                <span class="hero-skill-tag">Motion Graphics</span>
+                <span class="hero-skill-tag">Color Grading</span>
+                <span class="hero-skill-tag">3D CGI</span>
+            </div>
+
+            <div class="hero-cta-row">
+                <a href="#" class="hero-btn-primary">
+                    <span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M8 5v14l11-7z"/></svg>
+                        Watch Showreel
+                    </span>
+                </a>
+                <a href="#" class="hero-btn-secondary">View Projects</a>
+                <a href="./static/pdf/cv.pdf" download class="hero-btn-ghost">
+                    Download CV <span>→</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <div class="hero-right">
+
+            <div class="hero-portrait-frame" id="heroPortrait">
+                <img class="hero-portrait-img" src="./static/pictures/cropamirtha.png" alt="Amarthyai">
+
+                <!-- Corner brackets -->
+                <div class="portrait-bracket pb-tl"></div>
+                <div class="portrait-bracket pb-tr"></div>
+                <div class="portrait-bracket pb-bl"></div>
+                <div class="portrait-bracket pb-br"></div>
+
+                <!-- Floating stat chips -->
+                <div class="hero-chip hero-chip-1">
+                    <span class="chip-icon">🎬</span>
+                    <div class="chip-val">80+</div>
+                    <div class="chip-label">Projects</div>
+                </div>
+
+                <div class="hero-chip hero-chip-2">
+                    <span class="chip-icon">📈</span>
+                    <div class="chip-val">24M</div>
+                    <div class="chip-label">Total Views</div>
+                </div>
+
+                <div class="hero-chip hero-chip-3">
+                    <span class="chip-icon">⚡</span>
+                    <div class="chip-val">5yr</div>
+                    <div class="chip-label">Experience</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Showreel video strip -->
+    <div class="hero-reel-strip">
+        <div class="reel-label-row">
+            <div class="reel-label">Showreel 2026</div>
+            <a href="#" class="reel-view-link">View All Work <span>→</span></a>
+        </div>
+        <div class="hero-player">
+            <video
+                class="real-video"
+                poster="./static/pictures/video-thumbnail.jpg"
+                autoplay muted loop playsinline preload="auto"
+                controls
+            >
+                <source src="./static/videos/showreel.mp4" type="video/mp4">
+            </video>
+            <div class="player-border-glow"></div>
+        </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll to explore</span>
+    </div>
+
 </section>
 
 <div class="divider"></div>
@@ -1979,7 +2405,7 @@ Watch Showreel
 <div class="skills-grid">
 <div class="skill-card pr" style="--skill-level:90%;">
 <div class="skill-icon">
-    <img src="/static/pictures/premiere.png" alt="Premiere Pro">
+    <img src="./static/pictures/premiere.png" alt="Premiere Pro">
 </div>
 <div class="skill-name">Premiere Pro</div>
 <div class="skill-role">Primary NLE</div>
@@ -1996,7 +2422,7 @@ Watch Showreel
 </div>
 <div class="skill-card ae" style="--skill-level:70%;    ">
 <div class="skill-icon">
-    <img src="/static/pictures/after.png" alt="After Effects">
+    <img src="./static/pictures/after.png" alt="After Effects">
 </div>
 <div class="skill-name">After Effects</div>
 <div class="skill-role">Motion Graphics</div>
@@ -2013,7 +2439,7 @@ Watch Showreel
 </div>
 <div class="skill-card ps" style="--skill-level:80%;">
 <div class="skill-icon">
-    <img src="/static/pictures/photoshop.png" alt="Photoshop">
+    <img src="./static/pictures/photoshop.png" alt="Photoshop">
 </div>
 <div class="skill-name">Photoshop</div>
 <div class="skill-role">Design & Compositing</div>
@@ -2032,7 +2458,7 @@ Watch Showreel
 <div class="skill-card il" style="--skill-level:50%;">
 
     <div class="skill-icon">
-    <img src="/static/pictures/illustrator.png" alt="Illustrator">
+    <img src="./static/pictures/illustrator.png" alt="Illustrator">
 </div>
     <div class="skill-role">Vector Design & Branding</div>
 
@@ -2071,7 +2497,7 @@ Watch Showreel
 <div class="skill-card bl" style="--skill-level:50%;">
 
 <div class="skill-icon">
-    <img src="/static/pictures/blender.png" alt="Blender">
+    <img src="./static/pictures/blender.png" alt="Blender">
 </div>
 
 <div class="skill-name">Blender</div>
@@ -2096,7 +2522,7 @@ Watch Showreel
 <div class="skill-card nk" style="--skill-level:40%;">
 
 <div class="skill-icon">
-    <img src="/static/pictures/nuke.png" alt="Nuke">
+    <img src="./static/pictures/nuke.png" alt="Nuke">
 </div>
 
 <div class="skill-name">Nuke</div>
@@ -2144,7 +2570,7 @@ Watch Showreel
                             <div class="card-avatar-wrap">
                                 <div class="card-avatar-ring"></div>
                                 <div class="card-avatar-ring-2"></div>
-                                <img class="card-avatar-img" src="/static/pictures/cropamirtha.png" alt="Portrait">
+                                <img class="card-avatar-img" src="./static/pictures/cropamirtha.png" alt="Portrait">
                             </div>
 
                             <div class="card-name">Amarthyai</div>
@@ -2286,7 +2712,7 @@ Watch Showreel
                     <a href="#" class="contact-icon-btn" title="LinkedIn">in</a>
                     <a href="#" class="contact-icon-btn" title="Instagram">IG</a>
                     <a href="#" class="contact-icon-btn" title="Vimeo">Vm</a>
-                    <a href="/static/pdf/cv.pdf" download class="contact-icon-btn" title="Resume">↓</a>
+                    <a href="./static/pdf/cv.pdf" download class="contact-icon-btn" title="Resume">↓</a>
                 </div>
             </div>
         </div>
@@ -2394,7 +2820,7 @@ videoFiles.forEach((video, index) => {
     card.innerHTML = `
     <div class="video-thumb">
         <video class="project-video" autoplay muted loop playsinline preload="metadata">
-            <source src="/static/videos/${video.file}" type="video/mp4">
+            <source src="./static/videos/${video.file}" type="video/mp4">
         </video>
         <div class="thumb-overlay"></div>
         <div class="thumb-category">${video.title}</div>
@@ -2938,6 +3364,126 @@ filterButtons.forEach(button => {
     }
 
     drawGlobe();
+})();
+
+// ── HERO: cinematic particle field ──
+(function() {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, mouse = { x: -9999, y: -9999 };
+
+    function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+    });
+
+    // Floating particles
+    const particles = Array.from({ length: 55 }, () => ({
+        x: Math.random() * 1920,
+        y: Math.random() * 1080,
+        r: Math.random() * 1.8 + 0.3,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        alpha: Math.random() * 0.35 + 0.08,
+        color: Math.random() > 0.55 ? '92,157,220' : '200,169,110',
+        twinkle: Math.random() * Math.PI * 2,
+    }));
+
+    // Geometric grid dots in background
+    const gridDots = [];
+    const spacing = 80;
+    for (let x = 0; x < 1920; x += spacing) {
+        for (let y = 0; y < 1080; y += spacing) {
+            gridDots.push({ x, y, baseAlpha: Math.random() * 0.06 + 0.02 });
+        }
+    }
+
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Grid dots
+        gridDots.forEach(d => {
+            const dx = mouse.x - d.x, dy = mouse.y - d.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            const boost = dist < 180 ? (1 - dist/180) * 0.25 : 0;
+            ctx.beginPath();
+            ctx.arc(d.x % W, d.y % H, 1, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(92,157,220,${d.baseAlpha + boost})`;
+            ctx.fill();
+        });
+
+        // Particles + mouse repel
+        particles.forEach(p => {
+            p.twinkle += 0.018;
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > W) p.vx *= -1;
+            if (p.y < 0 || p.y > H) p.vy *= -1;
+
+            // mouse push
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < 120) {
+                p.x += (dx / dist) * 0.8;
+                p.y += (dy / dist) * 0.8;
+            }
+
+            const a = p.alpha * (0.6 + 0.4 * Math.sin(p.twinkle));
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${p.color},${a})`;
+            ctx.fill();
+        });
+
+        // Connect nearby particles
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const d = Math.sqrt(dx*dx + dy*dy);
+                if (d < 90) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(92,157,220,${0.07 * (1 - d/90)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(loop);
+    }
+    loop();
+})();
+
+// ── HERO: portrait 3D mouse parallax ──
+(function() {
+    const frame = document.getElementById('heroPortrait');
+    if (!frame) return;
+
+    document.addEventListener('mousemove', (e) => {
+        const rect = frame.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = (e.clientX - cx) / window.innerWidth;
+        const dy = (e.clientY - cy) / window.innerHeight;
+        frame.style.transform = `perspective(800px) rotateY(${dx * 10}deg) rotateX(${-dy * 8}deg)`;
+    });
+
+    document.addEventListener('mouseleave', () => {
+        frame.style.transition = 'transform 0.8s ease';
+        frame.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg)';
+        setTimeout(() => frame.style.transition = '', 800);
+    });
 })();
 </script>
 </body>
