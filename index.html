@@ -950,134 +950,456 @@ border: 1px solid var(--border);
 padding: 4px 8px;
 }
 /* ─── ABOUT ─── */
+/* ─── ABOUT ─── */
 .about-section {
-background: var(--charcoal);
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 0;
-padding: 0;
-overflow: hidden;
+    position: relative;
+    background: var(--black);
+    overflow: hidden;
+    padding: 0;
 }
 
-.about-left {
-position: relative;
-overflow: hidden;
-min-height: 600px;
-background: var(--charcoal-mid);
+/* ── Animated canvas background ── */
+#about-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.6;
 }
 
-.about-image-fill {
-position: absolute;
-inset: 0;
-background: linear-gradient(135deg, #0a0e16 0%, #10182a 50%, #08100e 100%);
-display: flex;
-align-items: center;
-justify-content: center;
+.about-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
 }
 
-.about-portrait-placeholder {
-width: 180px;
-height: 220px;
-border: 1px solid var(--border);
-position: relative;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 12px;
+/* ── LEFT: 3D card ── */
+.about-left-new {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 60px;
+    overflow: hidden;
 }
 
-.portrait-circle {
-width: 64px; height: 64px;
-border-radius: 50%;
-border: 1px solid var(--border);
-background: var(--charcoal-light);
+.about-card-scene {
+    perspective: 900px;
+    width: 320px;
+    height: 420px;
 }
 
-.portrait-rect {
-width: 80px; height: 28px;
-background: var(--charcoal-light);
-border-radius: 2px;
+.about-card-3d {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.08s ease;
+    border-radius: 24px;
 }
 
-.portrait-rect-sm {
-width: 56px; height: 16px;
-background: var(--border);
-border-radius: 2px;
+.about-card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #0f1923 0%, #0a1018 40%, #0d1520 100%);
+    border: 1px solid rgba(92,157,220,0.18);
+    overflow: hidden;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.7),
+        0 0 60px rgba(92,157,220,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
-.about-image-label {
-position: absolute;
-bottom: 32px;
-left: 32px;
-font-family: var(--font-ui);
-font-size: 9px;
-letter-spacing: 0.3em;
-text-transform: uppercase;
-color: rgba(255,255,255,0.25);
-border-left: 1px solid rgba(255,255,255,0.1);
-padding-left: 12px;
+/* holographic shimmer */
+.about-card-face::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(92,157,220,0.07) 40%,
+        rgba(200,169,110,0.05) 50%,
+        transparent 70%
+    );
+    z-index: 2;
+    transition: opacity 0.3s;
+    border-radius: 24px;
 }
 
-.about-image-overlay {
-position: absolute;
-inset: 0;
-background: linear-gradient(to right, transparent 60%, var(--charcoal) 100%);
+.card-grid-lines {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 24px;
+    opacity: 0.15;
 }
 
-.about-right {
-padding: 80px 72px 80px 64px;
-display: flex;
-flex-direction: column;
-justify-content: center;
+.card-grid-lines::before,
+.card-grid-lines::after {
+    content: '';
+    position: absolute;
+    background: var(--blue-accent);
 }
 
-.about-intro {
-font-family: var(--font-display);
-font-size: clamp(24px, 2.5vw, 38px);
-font-weight: 300;
-font-style: italic;
-line-height: 1.4;
-color: rgba(245,245,245,0.8);
-margin-bottom: 32px;
-letter-spacing: -0.01em;
+.card-grid-lines::before {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
 }
 
-.about-text {
-font-family: var(--font-body);
-font-size: 14px;
-font-weight: 300;
-color: var(--silver);
-line-height: 1.85;
-margin-bottom: 20px;
+.card-grid-lines::after {
+    top: 45%;
+    left: 0;
+    right: 0;
+    height: 1px;
 }
 
-.about-stats {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 32px;
-margin-top: 48px;
-padding-top: 40px;
-border-top: 1px solid var(--border);
+.card-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 32px;
 }
 
-.stat-num {
-font-family: var(--font-display);
-font-size: 40px;
-font-weight: 300;
-color: var(--white);
-line-height: 1;
-margin-bottom: 6px;
-letter-spacing: -0.02em;
+.card-avatar-wrap {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 28px;
 }
 
-.stat-label {
-font-family: var(--font-ui);
-font-size: 10px;
-font-weight: 400;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: var(--silver);
+.card-avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(92,157,220,0.3);
+    animation: ringPulse 3s ease-in-out infinite;
+}
+
+.card-avatar-ring-2 {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    border: 1px solid rgba(92,157,220,0.12);
+    animation: ringPulse 3s ease-in-out infinite 0.8s;
+}
+
+@keyframes ringPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+}
+
+.card-avatar-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(92,157,220,0.25);
+    display: block;
+    background: var(--charcoal-mid);
+}
+
+.card-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+}
+
+.card-title-tag {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    margin-bottom: 28px;
+}
+
+.card-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(92,157,220,0.3), transparent);
+    margin-bottom: 24px;
+}
+
+.card-stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.card-stat {
+    text-align: center;
+}
+
+.card-stat-n {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.card-stat-l {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+    margin-top: 4px;
+}
+
+.card-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.card-skill-chip {
+    font-family: var(--font-ui);
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--silver);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+}
+
+/* floating orbs behind card */
+.about-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    animation: orbFloat 8s ease-in-out infinite;
+}
+
+.about-orb-1 {
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(92,157,220,0.12), transparent 70%);
+    top: 10%; left: -10%;
+    animation-delay: 0s;
+}
+
+.about-orb-2 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(200,169,110,0.08), transparent 70%);
+    bottom: 15%; right: 5%;
+    animation-delay: -3s;
+}
+
+@keyframes orbFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    33% { transform: translateY(-20px) scale(1.05); }
+    66% { transform: translateY(12px) scale(0.97); }
+}
+
+/* ── RIGHT: content ── */
+.about-right-new {
+    padding: 100px 80px 100px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.about-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--blue-accent);
+    margin-bottom: 24px;
+}
+
+.about-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--blue-accent);
+}
+
+.about-headline {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4.5vw, 68px);
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+
+.about-headline em {
+    font-style: italic;
+    color: var(--white-dim);
+}
+
+.about-quote {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--blue-accent);
+    opacity: 0.85;
+    margin-bottom: 36px;
+    padding-left: 18px;
+    border-left: 2px solid rgba(92,157,220,0.3);
+    line-height: 1.6;
+}
+
+.about-body {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--silver);
+    line-height: 1.9;
+    margin-bottom: 18px;
+}
+
+.about-body strong {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* ── Animated skill bars ── */
+.about-skills-bars {
+    margin: 36px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.abar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.abar-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.abar-name {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+}
+
+.abar-pct {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--silver-dim);
+    letter-spacing: 0.05em;
+}
+
+.abar-track {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.abar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.abar-fill.blue  { background: linear-gradient(90deg, #3a7bd5, var(--blue-accent)); }
+.abar-fill.gold  { background: linear-gradient(90deg, #b8892e, var(--gold)); }
+.abar-fill.green { background: linear-gradient(90deg, #2e7d52, #4ec87e); }
+.abar-fill.purple{ background: linear-gradient(90deg, #7b3fa0, #b06fdc); }
+
+/* ── Bottom stat strip ── */
+.about-stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-top: 44px;
+    overflow: hidden;
+}
+
+.strip-stat {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+}
+
+.strip-stat:last-child { border-right: none; }
+
+.strip-stat::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.strip-stat:nth-child(1)::before { background: linear-gradient(90deg, var(--blue-accent), transparent); }
+.strip-stat:nth-child(2)::before { background: linear-gradient(90deg, var(--gold), transparent); }
+.strip-stat:nth-child(3)::before { background: linear-gradient(90deg, #4ec87e, transparent); }
+
+.strip-stat:hover { background: var(--white-ghost); }
+.strip-stat:hover::before { opacity: 1; }
+
+.strip-num {
+    font-family: var(--font-display);
+    font-size: 44px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.03em;
+}
+
+.strip-label {
+    font-family: var(--font-ui);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver-dim);
+}
+
+/* responsive */
+@media (max-width: 980px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .about-left-new { padding: 80px 40px 40px; }
+    .about-right-new { padding: 40px 40px 80px; }
 }
 
 
@@ -1560,41 +1882,131 @@ Watch Showreel
 <div class="divider"></div>
 
 <!-- ─── ABOUT ─── -->
+<!-- ─── ABOUT ─── -->
 <section class="about-section">
-<div class="about-left">
-<div class="about-image-fill">
-<div class="about-portrait-placeholder">
-<div class="portrait-circle"></div>
-<div class="portrait-rect"></div>
-<div class="portrait-rect-sm"></div>
-</div>
-</div>
-<div class="about-image-label">Alex Mercer — Editor</div>
-<div class="about-image-overlay"></div>
-</div>
+    <canvas id="about-canvas"></canvas>
 
-<div class="about-right">
-<div class="section-label">About</div>
-<p class="about-intro">"Great editing is invisible — it's felt, not seen."</p>
-<p class="about-text">I'm a video editor and motion designer with 5+ years of experience crafting content for brands, agencies, and creative studios. My work spans commercial brand films, social-first campaigns, documentary edits, and high-retention short-form content.</p>
-<p class="about-text">I specialize in narrative pacing, audience retention optimization, and motion graphics integration. Every project starts with the story — the software is just the tool to tell it well. I bring a cinematic visual sensibility to even the smallest deliverable.</p>
-<p class="about-text">Previously with <strong style="color:var(--white);font-weight:500;">Polygon Studios</strong>, <strong style="color:var(--white);font-weight:500;">Frame & Co Agency</strong>, and freelance work across the US and Europe.</p>
+    <div class="about-inner">
 
-<div class="about-stats">
-<div>
-<div class="stat-num">80+</div>
-<div class="stat-label">Projects Delivered</div>
-</div>
-<div>
-<div class="stat-num">5yr</div>
-<div class="stat-label">Industry Experience</div>
-</div>
-<div>
-<div class="stat-num">24M</div>
-<div class="stat-label">Combined Views</div>
-</div>
-</div>
-</div>
+        <!-- LEFT: 3D tilt card -->
+        <div class="about-left-new">
+            <div class="about-orb about-orb-1"></div>
+            <div class="about-orb about-orb-2"></div>
+
+            <div class="about-card-scene" id="cardScene">
+                <div class="about-card-3d" id="card3d">
+                    <div class="about-card-face">
+                        <div class="card-grid-lines"></div>
+                        <div class="card-content">
+
+                            <div class="card-avatar-wrap">
+                                <div class="card-avatar-ring"></div>
+                                <div class="card-avatar-ring-2"></div>
+                                <img class="card-avatar-img" src="/static/pictures/cropamirtha.png" alt="Portrait">
+                            </div>
+
+                            <div class="card-name">Amarthyai</div>
+                            <div class="card-title-tag">Video Editor · Motion Designer</div>
+                            <div class="card-divider"></div>
+
+                            <div class="card-stat-row">
+                                <div class="card-stat">
+                                    <div class="card-stat-n">80+</div>
+                                    <div class="card-stat-l">Projects</div>
+                                </div>
+                                <div class="card-stat">
+                                    <div class="card-stat-n">5yr</div>
+                                    <div class="card-stat-l">Experience</div>
+                                </div>
+                                <div class="card-stat">
+                                    <div class="card-stat-n">24M</div>
+                                    <div class="card-stat-l">Views</div>
+                                </div>
+                            </div>
+
+                            <div class="card-divider"></div>
+
+                            <div class="card-skills-row">
+                                <span class="card-skill-chip">Premiere Pro</span>
+                                <span class="card-skill-chip">After Effects</span>
+                                <span class="card-skill-chip">Blender</span>
+                                <span class="card-skill-chip">Maya</span>
+                                <span class="card-skill-chip">Nuke</span>
+                                <span class="card-skill-chip">Motion</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: content -->
+        <div class="about-right-new">
+            <div class="about-eyebrow">About Me</div>
+
+            <h2 class="about-headline">
+                Crafting stories<br><em>frame by frame</em>
+            </h2>
+
+            <p class="about-quote">"Great editing is invisible — it's felt, not seen."</p>
+
+            <p class="about-body">
+                I'm a video editor and motion designer with <strong>5+ years</strong> of experience crafting content for brands, agencies, and creative studios. My work spans commercial brand films, social-first campaigns, documentary edits, and high-retention short-form content.
+            </p>
+
+            <p class="about-body">
+                I specialize in <strong>narrative pacing</strong>, audience retention optimization, and motion graphics integration. Every project starts with the story — the software is just the tool to tell it well. I bring a cinematic visual sensibility to even the smallest deliverable.
+            </p>
+
+            <!-- Animated bars -->
+            <div class="about-skills-bars" id="aboutBars">
+                <div class="abar-row">
+                    <div class="abar-label-row">
+                        <span class="abar-name">Editing & Post-Production</span>
+                        <span class="abar-pct">92%</span>
+                    </div>
+                    <div class="abar-track"><div class="abar-fill blue" data-width="92%"></div></div>
+                </div>
+                <div class="abar-row">
+                    <div class="abar-label-row">
+                        <span class="abar-name">Motion Graphics</span>
+                        <span class="abar-pct">78%</span>
+                    </div>
+                    <div class="abar-track"><div class="abar-fill gold" data-width="78%"></div></div>
+                </div>
+                <div class="abar-row">
+                    <div class="abar-label-row">
+                        <span class="abar-name">3D Animation & CGI</span>
+                        <span class="abar-pct">62%</span>
+                    </div>
+                    <div class="abar-track"><div class="abar-fill green" data-width="62%"></div></div>
+                </div>
+                <div class="abar-row">
+                    <div class="abar-label-row">
+                        <span class="abar-name">VFX Compositing</span>
+                        <span class="abar-pct">55%</span>
+                    </div>
+                    <div class="abar-track"><div class="abar-fill purple" data-width="55%"></div></div>
+                </div>
+            </div>
+
+            <div class="about-stat-strip">
+                <div class="strip-stat">
+                    <div class="strip-num">80+</div>
+                    <div class="strip-label">Projects Delivered</div>
+                </div>
+                <div class="strip-stat">
+                    <div class="strip-num">5yr</div>
+                    <div class="strip-label">Industry Experience</div>
+                </div>
+                <div class="strip-stat">
+                    <div class="strip-num">24M</div>
+                    <div class="strip-label">Combined Views</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <div class="divider"></div>
@@ -1835,6 +2247,115 @@ filterButtons.forEach(button => {
         viewMoreWrap.style.display = filter === 'all' ? 'flex' : 'none';
     });
 });
+
+// ── ABOUT: Particle canvas ──
+(function() {
+    const canvas = document.getElementById('about-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * W;
+            this.y = Math.random() * H;
+            this.r = Math.random() * 1.5 + 0.3;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.alpha = Math.random() * 0.4 + 0.1;
+            this.color = Math.random() > 0.6 ? '92,157,220' : '200,169,110';
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color},${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+    function connectParticles() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(92,157,220,${0.06 * (1 - dist/100)})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function loop() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connectParticles();
+        requestAnimationFrame(loop);
+    }
+    loop();
+})();
+
+// ── ABOUT: 3D card tilt ──
+(function() {
+    const scene = document.getElementById('cardScene');
+    const card  = document.getElementById('card3d');
+    if (!scene || !card) return;
+
+    scene.addEventListener('mousemove', (e) => {
+        const rect = scene.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / (rect.width / 2);
+        const dy = (e.clientY - cy) / (rect.height / 2);
+        card.style.transform = `rotateY(${dx * 18}deg) rotateX(${-dy * 14}deg) translateZ(20px)`;
+    });
+
+    scene.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.6s ease';
+        card.style.transform = 'rotateY(0deg) rotateX(0deg) translateZ(0px)';
+        setTimeout(() => card.style.transition = 'transform 0.08s ease', 600);
+    });
+})();
+
+// ── ABOUT: Skill bars animate on scroll ──
+(function() {
+    const bars = document.querySelectorAll('.abar-fill');
+    if (!bars.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                bars.forEach(bar => {
+                    bar.style.width = bar.dataset.width;
+                });
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const section = document.getElementById('aboutBars');
+    if (section) observer.observe(section);
+})();
 </script>
 </body>
 </html>
