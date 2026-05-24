@@ -808,26 +808,81 @@ top: 0; left: 0; right: 0;
 height: 2px;
 }
 
-.skill-card.pr::before { background: linear-gradient(90deg, #0070f3, transparent); }
-.skill-card.ae::before { background: linear-gradient(90deg, #9e33cc, transparent); }
-.skill-card.ps::before { background: linear-gradient(90deg, #31a8ff, transparent); }
-.skill-card.dr::before { background: linear-gradient(90deg, #e8b040, transparent); }
-
-.skill-icon {
-font-family: var(--font-ui);
-font-size: 11px;
-font-weight: 700;
-letter-spacing: 0.1em;
-margin-bottom: 20px;
-padding: 8px 12px;
-display: inline-block;
-border: 1px solid;
+.skill-fill{
+    height: 100%;
+    border-radius: 1px;
+    width: var(--skill-level);
 }
 
-.skill-card.pr .skill-icon { color: #6eb0ff; border-color: rgba(0,112,243,0.3); background: rgba(0,112,243,0.06); }
-.skill-card.ae .skill-icon { color: #c470f5; border-color: rgba(158,51,204,0.3); background: rgba(158,51,204,0.06); }
-.skill-card.ps .skill-icon { color: #6ac5ff; border-color: rgba(49,168,255,0.3); background: rgba(49,168,255,0.06); }
-.skill-card.dr .skill-icon { color: #f0c060; border-color: rgba(232,176,64,0.3); background: rgba(232,176,64,0.06); }
+.skill-icon{
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    padding: 6px;
+}
+
+.skill-icon img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    display: block;
+    filter:
+        brightness(1.05)
+        contrast(1.05);
+}
+
+
+.skill-card.pr .skill-fill {
+    background: linear-gradient(90deg, #0070f3, #6eb0ff);
+}
+
+.skill-card.ae .skill-fill {
+    background: linear-gradient(90deg, #9e33cc, #c470f5);
+}
+
+.skill-card.ps .skill-fill {
+    background: linear-gradient(90deg, #31a8ff, #6ac5ff);
+}
+.skill-card.dr .skill-fill {
+    background: linear-gradient(90deg, #37c5ff, #7de3ff);
+}
+
+.skill-card.nk .skill-fill {
+    background: linear-gradient(90deg, #ff784e, #ffb199);
+}
+
+
+.skill-card.il .skill-icon {
+    color: #ff9a00;
+    border-color: rgba(255,154,0,0.3);
+    background: rgba(255,154,0,0.06);
+}
+
+.skill-card.il .skill-fill {
+    background: linear-gradient(90deg, #ff9a00, #ffcc66);
+}
+
+
+
+
+.skill-card.bl .skill-fill {
+    background: linear-gradient(90deg, #f57c00, #ffb347);
+}
+
+
+
 
 .skill-name {
 font-family: var(--font-body);
@@ -866,11 +921,6 @@ overflow: hidden;
 height: 100%;
 border-radius: 1px;
 }
-
-.skill-card.pr .skill-fill { width: 93%; background: linear-gradient(90deg, #0070f3, #6eb0ff); }
-.skill-card.ae .skill-fill { width: 88%; background: linear-gradient(90deg, #9e33cc, #c470f5); }
-.skill-card.ps .skill-fill { width: 80%; background: linear-gradient(90deg, #31a8ff, #6ac5ff); }
-.skill-card.dr .skill-fill { width: 85%; background: linear-gradient(90deg, #e8b040, #f0c060); }
 
 .skill-pct {
 font-family: var(--font-ui);
@@ -1462,13 +1512,15 @@ Watch Showreel
 <p class="section-sub">Proficient across the full post-production pipeline — from rough cut to final export.</p>
 
 <div class="skills-grid">
-<div class="skill-card pr">
-<div class="skill-icon">Pr</div>
+<div class="skill-card pr" style="--skill-level:90%;">
+<div class="skill-icon">
+    <img src="/static/pictures/premiere.png" alt="Premiere Pro">
+</div>
 <div class="skill-name">Premiere Pro</div>
 <div class="skill-role">Primary NLE</div>
 <div class="skill-bar-wrap">
 <div class="skill-bar"><div class="skill-fill"></div></div>
-<div class="skill-pct">93%</div>
+<div class="skill-pct">90%</div>
 </div>
 <div class="skill-tags">
 <span class="skill-tag">Multicam</span>
@@ -1477,13 +1529,15 @@ Watch Showreel
 <span class="skill-tag">Dynamic Link</span>
 </div>
 </div>
-<div class="skill-card ae">
-<div class="skill-icon">Ae</div>
+<div class="skill-card ae" style="--skill-level:70%;    ">
+<div class="skill-icon">
+    <img src="/static/pictures/after.png" alt="After Effects">
+</div>
 <div class="skill-name">After Effects</div>
 <div class="skill-role">Motion Graphics</div>
 <div class="skill-bar-wrap">
 <div class="skill-bar"><div class="skill-fill"></div></div>
-<div class="skill-pct">88%</div>
+<div class="skill-pct">70%</div>
 </div>
 <div class="skill-tags">
 <span class="skill-tag">Motion Blur</span>
@@ -1492,8 +1546,10 @@ Watch Showreel
 <span class="skill-tag">3D Camera</span>
 </div>
 </div>
-<div class="skill-card ps">
-<div class="skill-icon">Ps</div>
+<div class="skill-card ps" style="--skill-level:80%;">
+<div class="skill-icon">
+    <img src="/static/pictures/photoshop.png" alt="Photoshop">
+</div>
 <div class="skill-name">Photoshop</div>
 <div class="skill-role">Design & Compositing</div>
 <div class="skill-bar-wrap">
@@ -1507,20 +1563,95 @@ Watch Showreel
 <span class="skill-tag">Smart Objects</span>
 </div>
 </div>
-<div class="skill-card dr">
-<div class="skill-icon">DR</div>
-<div class="skill-name">DaVinci Resolve</div>
-<div class="skill-role">Color & Grading</div>
+
+<div class="skill-card il" style="--skill-level:50%;">
+
+    <div class="skill-icon">
+    <img src="/static/pictures/illustrator.png" alt="Illustrator">
+</div>
+    <div class="skill-role">Vector Design & Branding</div>
+
+    <div class="skill-bar-wrap">
+        <div class="skill-bar">
+            <div class="skill-fill"></div>
+        </div>
+        <div class="skill-pct">50%</div>
+    </div>
+
+    <div class="skill-tags">
+        <span class="skill-tag">Logo Design</span>
+        <span class="skill-tag">Vector Art</span>
+        <span class="skill-tag">Brand Assets</span>
+        <span class="skill-tag">Icons</span>
+    </div>
+</div>
+
+<div class="skill-card dr" style="--skill-level:50%;">
+<div class="skill-icon">
+    <img src="/static/pictures/maya.png" alt="Maya">
+</div>
+<div class="skill-name">Autodesk Maya</div>
+<div class="skill-role">3D Modeling & Animation</div>
 <div class="skill-bar-wrap">
 <div class="skill-bar"><div class="skill-fill"></div></div>
-<div class="skill-pct">85%</div>
+<div class="skill-pct" style="--skill-level:50%;">50%</div>
 </div>
 <div class="skill-tags">
-<span class="skill-tag">Color Grading</span>
-<span class="skill-tag">Node Trees</span>
-<span class="skill-tag">Fusion</span>
-<span class="skill-tag">Fairlight</span>
+<span class="skill-tag">Character Rigging</span>
+<span class="skill-tag">3D Modeling</span>
+<span class="skill-tag">Environment Design</span>
+<span class="skill-tag">Animation</span>
 </div>
+</div>
+<div class="skill-card bl" style="--skill-level:50%;">
+
+<div class="skill-icon">
+    <img src="/static/pictures/blender.png" alt="Blender">
+</div>
+
+<div class="skill-name">Blender</div>
+
+<div class="skill-role">3D & CGI Production</div>
+
+<div class="skill-bar-wrap">
+    <div class="skill-bar">
+        <div class="skill-fill"></div>
+    </div>
+    <div class="skill-pct">50%</div>
+</div>
+
+<div class="skill-tags">
+    <span class="skill-tag">CGI Ads</span>
+    <span class="skill-tag">Modeling</span>
+    <span class="skill-tag">Geometry Nodes</span>
+    <span class="skill-tag">Animation</span>
+</div>
+
+</div>
+<div class="skill-card nk" style="--skill-level:40%;">
+
+<div class="skill-icon">
+    <img src="/static/pictures/nuke.png" alt="Nuke">
+</div>
+
+<div class="skill-name">Nuke</div>
+
+<div class="skill-role">Compositing & VFX</div>
+
+<div class="skill-bar-wrap">
+    <div class="skill-bar">
+        <div class="skill-fill"></div>
+    </div>
+    <div class="skill-pct">40%</div>
+</div>
+
+<div class="skill-tags">
+    <span class="skill-tag">Keying</span>
+    <span class="skill-tag">Rotoscoping</span>
+    <span class="skill-tag">CG Compositing</span>
+    <span class="skill-tag">Tracking</span>
+</div>
+
 </div>
 </div>
 </section>
@@ -1743,7 +1874,7 @@ videoFiles.forEach((video, index) => {
             <div class="thumb-play-icon"></div>
         </div>
         <button class="video-unmute">
-            ×
+            🔇
 </button>
 
     </div>
@@ -1764,12 +1895,12 @@ document.querySelectorAll('.video-card').forEach(card => {
         if(video.muted){
 
             video.muted = false;
-            button.innerHTML = '◉';
+            button.innerHTML = '🔊';
 
         } else {
 
             video.muted = true;
-            button.innerHTML = '×';
+            button.innerHTML = '🔇';
 
         }
 
