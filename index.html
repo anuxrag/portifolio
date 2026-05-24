@@ -949,75 +949,6 @@ color: var(--silver-dim);
 border: 1px solid var(--border);
 padding: 4px 8px;
 }
-
-/* ─── WORKFLOW ─── */
-.workflow-section {
-background: var(--black);
-}
-
-.workflow-steps {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 0;
-border: 1px solid var(--border);
-overflow: hidden;
-}
-
-.workflow-step {
-padding: 48px 40px;
-border-right: 1px solid var(--border);
-position: relative;
-transition: background 0.3s;
-}
-
-.workflow-step:last-child { border-right: none; }
-.workflow-step:hover { background: var(--white-ghost); }
-
-.step-number {
-font-family: var(--font-display);
-font-size: 64px;
-font-weight: 300;
-font-style: italic;
-color: var(--border);
-line-height: 1;
-margin-bottom: 24px;
-letter-spacing: -0.02em;
-}
-
-.step-title {
-font-family: var(--font-ui);
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 0.35em;
-text-transform: uppercase;
-color: var(--white);
-margin-bottom: 12px;
-}
-
-.step-desc {
-font-family: var(--font-body);
-font-size: 13px;
-font-weight: 300;
-color: var(--silver);
-line-height: 1.7;
-}
-
-.step-line {
-position: absolute;
-top: 0;
-left: 0;
-right: 0;
-height: 2px;
-transition: opacity 0.3s;
-opacity: 0;
-}
-
-.workflow-step:hover .step-line { opacity: 1; }
-.workflow-step:nth-child(1) .step-line { background: linear-gradient(90deg, var(--blue-accent), transparent); }
-.workflow-step:nth-child(2) .step-line { background: linear-gradient(90deg, var(--gold), transparent); }
-.workflow-step:nth-child(3) .step-line { background: linear-gradient(90deg, #8bc460, transparent); }
-.workflow-step:nth-child(4) .step-line { background: linear-gradient(90deg, var(--silver), transparent); }
-
 /* ─── ABOUT ─── */
 .about-section {
 background: var(--charcoal);
@@ -1149,78 +1080,6 @@ text-transform: uppercase;
 color: var(--silver);
 }
 
-/* ─── TESTIMONIALS ─── */
-.testimonials {
-background: var(--black);
-position: relative;
-}
-
-.testi-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 20px;
-}
-
-.testi-card {
-background: var(--charcoal);
-border: 1px solid var(--border);
-padding: 36px 32px;
-position: relative;
-transition: border-color 0.3s;
-}
-
-.testi-card:hover { border-color: rgba(255,255,255,0.1); }
-
-.testi-quote-mark {
-font-family: var(--font-display);
-font-size: 64px;
-font-style: italic;
-font-weight: 300;
-color: var(--border);
-line-height: 1;
-margin-bottom: 16px;
-}
-
-.testi-text {
-font-family: var(--font-body);
-font-size: 14px;
-font-weight: 300;
-color: rgba(245,245,245,0.75);
-line-height: 1.8;
-margin-bottom: 32px;
-}
-
-.testi-author {
-display: flex;
-align-items: center;
-gap: 14px;
-}
-
-.author-avatar {
-width: 36px; height: 36px;
-border-radius: 50%;
-border: 1px solid var(--border);
-background: var(--charcoal-light);
-flex-shrink: 0;
-}
-
-.author-name {
-font-family: var(--font-ui);
-font-size: 12px;
-font-weight: 500;
-letter-spacing: 0.1em;
-color: var(--white);
-margin-bottom: 2px;
-}
-
-.author-role {
-font-family: var(--font-ui);
-font-size: 10px;
-font-weight: 400;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: var(--silver-dim);
-}
 
 /* ─── CONTACT ─── */
 .contact-section {
@@ -1405,6 +1264,49 @@ to { opacity:1; transform: translateY(0); }
     object-fit: contain;
     display: block;
 }
+/* ─── VIEW MORE ─── */
+.view-more-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.btn-view-more {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 14px 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-view-more:hover {
+    border-color: rgba(255,255,255,0.3);
+    background: var(--white-ghost);
+}
+
+.btn-view-more .btn-arrow {
+    transition: transform 0.3s;
+    font-size: 14px;
+}
+
+.btn-view-more.expanded .btn-arrow {
+    transform: rotate(180deg);
+}
+
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 </style>
 </head>
 <body>
@@ -1491,11 +1393,10 @@ Watch Showreel
 </div>
 <div class="work-filters">
 <div class="filter-pill active">All</div>
-<div class="filter-pill">Commercial</div>
-<div class="filter-pill">Narrative</div>
-<div class="filter-pill">Social</div>
-<div class="filter-pill">Music</div>
-<div class="filter-pill">3D</div>
+<div class="filter-pill">Self-Branding</div>
+<div class="filter-pill">Commercial Ads</div>
+<div class="filter-pill">Motion Graphics</div>
+<div class="filter-pill">3D-Animation</div>
 </div>
 </div>
 
@@ -1658,41 +1559,6 @@ Watch Showreel
 
 <div class="divider"></div>
 
-<!-- ─── WORKFLOW ─── -->
-<section class="workflow-section">
-<div class="section-label">Process</div>
-<h2 class="section-heading" style="margin-bottom:56px">Editing <em>Workflow</em></h2>
-
-<div class="workflow-steps">
-<div class="workflow-step">
-<div class="step-line"></div>
-<div class="step-number">01</div>
-<div class="step-title">Concept & Review</div>
-<p class="step-desc">Brief analysis, raw footage review, structural planning, and story arc development before the first cut.</p>
-</div>
-<div class="workflow-step">
-<div class="step-line"></div>
-<div class="step-number">02</div>
-<div class="step-title">Editing & Pacing</div>
-<p class="step-desc">Assembly cut, rough cut refinement, rhythm-driven pacing decisions, and narrative flow optimization.</p>
-</div>
-<div class="workflow-step">
-<div class="step-line"></div>
-<div class="step-number">03</div>
-<div class="step-title">Motion Design</div>
-<p class="step-desc">Kinetic typography, animated lower thirds, transitions, graphics packages, and visual effect compositing.</p>
-</div>
-<div class="workflow-step">
-<div class="step-line"></div>
-<div class="step-number">04</div>
-<div class="step-title">Final Delivery</div>
-<p class="step-desc">Color grade, audio mix, caption baking, multi-format export with organized file delivery and revisions.</p>
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
-
 <!-- ─── ABOUT ─── -->
 <section class="about-section">
 <div class="about-left">
@@ -1733,50 +1599,6 @@ Watch Showreel
 
 <div class="divider"></div>
 
-<!-- ─── TESTIMONIALS ─── -->
-<section class="testimonials">
-<div class="section-label">Feedback</div>
-<h2 class="section-heading" style="margin-bottom:56px">What <em>Clients Say</em></h2>
-
-<div class="testi-grid">
-<div class="testi-card">
-<div class="testi-quote-mark">"</div>
-<p class="testi-text">Alex's ability to understand the emotional arc of our campaign brief and translate it into a tight, compelling edit was exceptional. The final film exceeded our expectations entirely.</p>
-<div class="testi-author">
-<div class="author-avatar"></div>
-<div>
-<div class="author-name">Sarah K.</div>
-<div class="author-role">Creative Director · Horizon Studio</div>
-</div>
-</div>
-</div>
-<div class="testi-card">
-<div class="testi-quote-mark">"</div>
-<p class="testi-text">The motion graphics work was clean, on-brand, and delivered on an incredibly tight timeline. Alex communicated clearly throughout and required minimal revision rounds.</p>
-<div class="testi-author">
-<div class="author-avatar"></div>
-<div>
-<div class="author-name">Marcus T.</div>
-<div class="author-role">Head of Content · Apex Media</div>
-</div>
-</div>
-</div>
-<div class="testi-card">
-<div class="testi-quote-mark">"</div>
-<p class="testi-text">Our YouTube retention improved by 40% after Alex re-edited our series format. The pacing decisions were surgical — every cut had a reason. Highly recommend for any serious production.</p>
-<div class="testi-author">
-<div class="author-avatar"></div>
-<div>
-<div class="author-name">Priya M.</div>
-<div class="author-role">Producer · Luminos Creative</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
-
 <!-- ─── CONTACT ─── -->
 <section class="contact-section">
 <div class="contact-eyebrow">Let's Create Together</div>
@@ -1801,8 +1623,8 @@ Currently available for new roles
 
 <!-- ─── FOOTER ─── -->
 <footer>
-<div class="footer-logo">Alex Mercer</div>
-<div class="footer-copy">© 2024 — Video Editor & Motion Designer</div>
+<div class="footer-logo">Amarthyai</div>
+<div class="footer-copy">© 2026 — Video Editor & Motion Designer</div>
 <div class="footer-links">
 <a href="#" class="footer-link">Top</a>
 <a href="#" class="footer-link">Work</a>
@@ -1811,142 +1633,207 @@ Currently available for new roles
 </footer>
 
 <script>
-
-// Video grid data
-// AUTO VIDEO PROJECTS
-
 const videoFiles = [
-
-    {
-        file: "project1.mp4",
-        category: "commercial",
-        title: "Nike Spec Ad"
-    },
-
-    {
-        file: "project2.mp4",
-        category: "3d",
-        title: "3D Animation Reel"
-    },
-
-    {
-        file: "project3.mp4",
-        category: "social",
-        title: "Instagram Campaign"
-    }
-
+    { file: "electricalworld.mp4", category: "commercial ads", title: "Electrical World" },
+    { file: "backpainandexercise.mp4", category: "self-branding", title: "Back Pain and Exercise" },
+    { file: "booster.mp4", category: "self-branding", title: "Booster" },
+    { file: "ajvoice.mp4", category: "commercial ads", title: "aj gold" },
+    { file: "kuttikalilnaduvedhana.mp4", category: "self-branding", title: "back pain" },
+    { file: "motiongraphic.mp4", category: "motion graphics", title: "Juice motion graphics" },
+    { file: "kuttikaludesurgery.mp4", category: "self-branding", title: "Surgery" },
+    { file: "balanceddiet.mp4", category: "self-branding", title: "Balanced Diet" },
+    { file: "decor.mp4", category: "commercial ads", title: "decor" },
+    { file: "crownscategorize.mp4", category: "self-branding", title: "Crowns Categorize" },
+    { file: "ajgold.mp4", category: "commercial ads", title: "AJ Gold" },
+    { file: "pcos2.mp4", category: "self-branding", title: "PCOS" },
+    { file: "project1.mp4", category: "3d-animation", title: "3d ad" },
+    { file: "laserhairderuction.mp4", category: "self-branding", title: "Prime skin clinic" },
+    { file: "mallutiffinhouse.mp4", category: "motion graphics", title: "Mallu Tiffin House" },
+    { file: "drsandeshpacha.mp4", category: "self-branding", title: "back pain" },
+    { file: "project2.mp4", category: "3d-animation", title: "the last leaf" },
+    { file: "reenatiles.mp4", category: "commercial ads", title: "Reena Tiles" },
+    { file: "arjunchess.mp4", category: "motion graphics", title: "Arjun Chess Academy" },
+    { file: "strokeinbabiesmyth.mp4", category: "self-branding", title: "stroke in babies" },
+    { file: "cinematiclandscape.mp4", category: "3d-animation", title: "cinematic landscape" },
+    { file: "motiongraphics.mp4", category: "motion graphics", title: "lays motion graphics" },
+    { file: "triggerfinger.mp4", category: "self-branding", title: "trigger finger" },
 ];
+
+const VISIBLE_ROWS = 2;
+const COLS = 5;
+const INITIAL_VISIBLE = VISIBLE_ROWS * COLS; // 10
 
 const grid = document.getElementById('videoGrid');
 
+// Build all cards
 videoFiles.forEach((video, index) => {
-
     const card = document.createElement('div');
-
     card.className = 'video-card';
     card.dataset.category = video.category;
+    card.dataset.index = index;
+
+    // Hide cards beyond first 10
+    if (index >= INITIAL_VISIBLE) {
+        card.style.display = 'none';
+        card.dataset.hidden = 'true';
+    }
 
     card.innerHTML = `
     <div class="video-thumb">
-
-        <video
-            class="project-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-        >
+        <video class="project-video" autoplay muted loop playsinline preload="metadata">
             <source src="/static/videos/${video.file}" type="video/mp4">
         </video>
-
         <div class="thumb-overlay"></div>
-
-        <div class="thumb-category">
-            ${video.title}
-        </div>
-
-        <div class="thumb-duration">
-            Reel
-        </div>
-
-        <div class="thumb-play">
-            <div class="thumb-play-icon"></div>
-        </div>
-        <button class="video-unmute">
-            🔇
-</button>
-
+        <div class="thumb-category">${video.title}</div>
+        <div class="thumb-duration">Reel</div>
+        <div class="thumb-play"><div class="thumb-play-icon"></div></div>
+        <button class="video-unmute">🔇</button>
     </div>
     `;
 
     grid.appendChild(card);
-
 });
-// UNMUTE BUTTON
 
-document.querySelectorAll('.video-card').forEach(card => {
+// Add View More button after the grid
+const viewMoreWrap = document.createElement('div');
+viewMoreWrap.className = 'view-more-wrap';
+viewMoreWrap.innerHTML = `
+    <button class="btn-view-more" id="viewMoreBtn">
+        View More <span class="btn-arrow">↓</span>
+    </button>
+`;
+grid.parentElement.appendChild(viewMoreWrap);
 
-    const video = card.querySelector('.project-video');
-    const button = card.querySelector('.video-unmute');
+// Toggle logic
+let expanded = false;
+const viewMoreBtn = document.getElementById('viewMoreBtn');
 
-    button.addEventListener('click', () => {
+viewMoreBtn.addEventListener('click', () => {
+    expanded = !expanded;
 
-        if(video.muted){
+    const allCards = document.querySelectorAll('.video-card[data-hidden="true"]');
 
-            video.muted = false;
-            button.innerHTML = '🔊';
-
-        } else {
-
-            video.muted = true;
-            button.innerHTML = '🔇';
-
-        }
-
+    allCards.forEach(card => {
+        card.style.display = expanded ? 'block' : 'none';
     });
 
+    viewMoreBtn.classList.toggle('expanded', expanded);
+    viewMoreBtn.innerHTML = expanded
+        ? 'Show Less <span class="btn-arrow">↑</span>'
+        : 'View More <span class="btn-arrow">↓</span>';
+
+    // Scroll back up to grid if collapsing
+    if (!expanded) {
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 });
 
+// Unmute buttons
+// Video click interactions
+document.querySelectorAll('.video-card').forEach(card => {
+    const video = card.querySelector('.project-video');
+    const button = card.querySelector('.video-unmute');
+    const thumb = card.querySelector('.video-thumb');
 
-// FILTER PROJECTS
+    // Unmute button
+    button.addEventListener('click', (e) => {
+        e.stopPropagation(); // don't trigger thumb click
+        video.muted = !video.muted;
+        button.innerHTML = video.muted ? '🔇' : '🔊';
+    });
 
+    // Single click = pause/play toggle
+    let clickTimer = null;
+
+    thumb.addEventListener('click', () => {
+        clickTimer = setTimeout(() => {
+            if (video.paused) {
+                video.play();
+                thumb.style.opacity = '1';
+            } else {
+                video.pause();
+                thumb.style.opacity = '0.6';
+            }
+        }, 220);
+    });
+
+    // Double click = open fullscreen lightbox
+    thumb.addEventListener('dblclick', () => {
+        clearTimeout(clickTimer); // cancel the single-click action
+
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed; inset: 0; z-index: 10000;
+            background: rgba(0,0,0,0.92);
+            display: flex; align-items: center; justify-content: center;
+            cursor: zoom-out;
+            animation: fadeInOverlay 0.25s ease;
+        `;
+
+        const lightboxVideo = document.createElement('video');
+        lightboxVideo.src = video.currentSrc;
+        lightboxVideo.style.cssText = `
+            max-width: 90vw; max-height: 88vh;
+            border-radius: 14px;
+            outline: none;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.8);
+        `;
+        lightboxVideo.controls = true;
+        lightboxVideo.autoplay = true;
+        lightboxVideo.currentTime = video.currentTime;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.innerHTML = '✕';
+        closeBtn.style.cssText = `
+            position: absolute; top: 24px; right: 32px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #f5f5f5; font-size: 18px;
+            width: 42px; height: 42px; border-radius: 50%;
+            cursor: pointer; transition: background 0.2s;
+        `;
+
+        closeBtn.onmouseenter = () => closeBtn.style.background = 'rgba(255,255,255,0.16)';
+        closeBtn.onmouseleave = () => closeBtn.style.background = 'rgba(255,255,255,0.08)';
+
+        const close = () => {
+            video.currentTime = lightboxVideo.currentTime;
+            document.body.removeChild(overlay);
+            document.removeEventListener('keydown', escHandler);
+        };
+
+        const escHandler = (e) => { if (e.key === 'Escape') close(); };
+
+        closeBtn.addEventListener('click', (e) => { e.stopPropagation(); close(); });
+        overlay.addEventListener('click', close);
+        lightboxVideo.addEventListener('click', (e) => e.stopPropagation());
+        document.addEventListener('keydown', escHandler);
+
+        overlay.appendChild(lightboxVideo);
+        overlay.appendChild(closeBtn);
+        document.body.appendChild(overlay);
+    });
+});
+
+// Filter logic
 const filterButtons = document.querySelectorAll('.filter-pill');
 
 filterButtons.forEach(button => {
-
     button.addEventListener('click', () => {
-
-        filterButtons.forEach(btn =>
-            btn.classList.remove('active')
-        );
-
+        filterButtons.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
-        const filter =
-            button.textContent.toLowerCase();
+        const filter = button.textContent.toLowerCase();
 
-        document
-            .querySelectorAll('.video-card')
-            .forEach(card => {
+        // When filtering, show all matching cards regardless of hidden state
+        document.querySelectorAll('.video-card').forEach(card => {
+            const matches = filter === 'all' || card.dataset.category === filter;
+            card.style.display = matches ? 'block' : 'none';
+        });
 
-                if(
-                    filter === 'all' ||
-                    card.dataset.category === filter
-                ){
-
-                    card.style.display = 'block';
-
-                } else {
-
-                    card.style.display = 'none';
-
-                }
-
-            });
-
+        // Hide the view more button when a filter is active (all visible already)
+        viewMoreWrap.style.display = filter === 'all' ? 'flex' : 'none';
     });
-
 });
 </script>
 </body>
