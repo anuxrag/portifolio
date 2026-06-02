@@ -1222,13 +1222,6 @@ height: 2px;
     background: linear-gradient(90deg, #ff784e, #ffb199);
 }
 
-
-.skill-card.il .skill-icon {
-    color: #ff9a00;
-    border-color: rgba(255,154,0,0.3);
-    background: rgba(255,154,0,0.06);
-}
-
 .skill-card.il .skill-fill {
     background: linear-gradient(90deg, #ff9a00, #ffcc66);
 }
@@ -2243,10 +2236,11 @@ to { opacity:1; transform: translateY(0); }
     </a>
 <div class="nav-links-box">
     <ul class="nav-links">
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Process</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="#amrthi">Work</a></li>
+        <li><a href="#skillu">Expertise</a></li>
+        <li><a href="#about-section">About</a></li>
+        <li><a href="#contu">Contact</a></li>
+        
     </ul>
 </div>
 
@@ -2255,7 +2249,7 @@ to { opacity:1; transform: translateY(0); }
 
 <!-- ─── HERO ─── -->
 <!-- ─── HERO ─── -->
-<section class="hero">
+<section id="hee" class="hero">
     <canvas id="hero-canvas"></canvas>
 
     <div class="hero-orb hero-orb-1"></div>
@@ -2287,20 +2281,21 @@ to { opacity:1; transform: translateY(0); }
                 <span class="hero-skill-tag">After Effects</span>
                 <span class="hero-skill-tag">Blender</span>
                 <span class="hero-skill-tag">Maya</span>
+                 <span class="hero-skill-tag">Photoshop</span>
                 <span class="hero-skill-tag">Nuke</span>
                 <span class="hero-skill-tag">Motion Graphics</span>
-                <span class="hero-skill-tag">Color Grading</span>
+                <span class="hero-skill-tag">Color Gradings</span>
                 <span class="hero-skill-tag">3D CGI</span>
             </div>
 
             <div class="hero-cta-row">
-                <a href="#" class="hero-btn-primary">
+                <a href="#showw" class="hero-btn-primary">
                     <span>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M8 5v14l11-7z"/></svg>
                         Watch Showreel
                     </span>
                 </a>
-                <a href="#" class="hero-btn-secondary">View Projects</a>
+                <a href="#amrthi" class="hero-btn-secondary">View Projects</a>
                 <a href="./static/pdf/cv.pdf" download class="hero-btn-ghost">
                     Download CV <span>→</span>
                 </a>
@@ -2329,13 +2324,13 @@ to { opacity:1; transform: translateY(0); }
 
                 <div class="hero-chip hero-chip-2">
                     <span class="chip-icon">📈</span>
-                    <div class="chip-val">24M</div>
-                    <div class="chip-label">Total Views</div>
+                    <div class="chip-val">20+</div>
+                    <div class="chip-label">Clients</div>
                 </div>
 
                 <div class="hero-chip hero-chip-3">
                     <span class="chip-icon">⚡</span>
-                    <div class="chip-val">5yr</div>
+                    <div class="chip-val">1yr</div>
                     <div class="chip-label">Experience</div>
                 </div>
 
@@ -2345,10 +2340,10 @@ to { opacity:1; transform: translateY(0); }
     </div>
 
     <!-- Showreel video strip -->
-    <div class="hero-reel-strip">
+    <div id="showw" class="hero-reel-strip">
         <div class="reel-label-row">
-            <div class="reel-label">Showreel 2026</div>
-            <a href="#" class="reel-view-link">View All Work <span>→</span></a>
+            <div class="reel-label">Showreel 2025</div>
+            <a href="#amrthi" class="reel-view-link">View All Work <span>→</span></a>
         </div>
         <div class="hero-player">
             <video
@@ -2374,7 +2369,7 @@ to { opacity:1; transform: translateY(0); }
 <div class="divider"></div>
 
 <!-- ─── FEATURED WORK ─── -->
-<section class="featured-work">
+<section id="amrthi" class="featured-work">
 <div class="work-header">
 <div>
 <div class="section-label">Selected Work</div>
@@ -2397,7 +2392,7 @@ to { opacity:1; transform: translateY(0); }
 
 
 <!-- ─── SKILLS ─── -->
-<section class="skills-section">
+<section id="skillu" class="skills-section">
 <div class="section-label">Technical Proficiency</div>
 <h2 class="section-heading">Software & <em>Expertise</em></h2>
 <p class="section-sub">Proficient across the full post-production pipeline — from rough cut to final export.</p>
@@ -2420,7 +2415,7 @@ to { opacity:1; transform: translateY(0); }
 <span class="skill-tag">Dynamic Link</span>
 </div>
 </div>
-<div class="skill-card ae" style="--skill-level:70%;    ">
+<div class="skill-card ae" style="--skill-level:85%;    ">
 <div class="skill-icon">
     <img src="./static/pictures/after.png" alt="After Effects">
 </div>
@@ -2428,7 +2423,7 @@ to { opacity:1; transform: translateY(0); }
 <div class="skill-role">Motion Graphics</div>
 <div class="skill-bar-wrap">
 <div class="skill-bar"><div class="skill-fill"></div></div>
-<div class="skill-pct">70%</div>
+<div class="skill-pct">85%</div>
 </div>
 <div class="skill-tags">
 <span class="skill-tag">Motion Blur</span>
@@ -2551,7 +2546,7 @@ to { opacity:1; transform: translateY(0); }
 
 <!-- ─── ABOUT ─── -->
 <!-- ─── ABOUT ─── -->
-<section class="about-section">
+<section id="about-section" class="about-section">
     <canvas id="about-canvas"></canvas>
 
     <div class="about-inner">
@@ -2583,12 +2578,12 @@ to { opacity:1; transform: translateY(0); }
                                     <div class="card-stat-l">Projects</div>
                                 </div>
                                 <div class="card-stat">
-                                    <div class="card-stat-n">5yr</div>
+                                    <div class="card-stat-n">1yr</div>
                                     <div class="card-stat-l">Experience</div>
                                 </div>
                                 <div class="card-stat">
-                                    <div class="card-stat-n">24M</div>
-                                    <div class="card-stat-l">Views</div>
+                                    <div class="card-stat-n">20+</div>
+                                    <div class="card-stat-l">Clients</div>
                                 </div>
                             </div>
 
@@ -2597,10 +2592,11 @@ to { opacity:1; transform: translateY(0); }
                             <div class="card-skills-row">
                                 <span class="card-skill-chip">Premiere Pro</span>
                                 <span class="card-skill-chip">After Effects</span>
-                                <span class="card-skill-chip">Blender</span>
+                                <span class="card-skill-chip">Blender</span><span class="card-skill-chip">Photoshop</span>
                                 <span class="card-skill-chip">Maya</span>
                                 <span class="card-skill-chip">Nuke</span>
                                 <span class="card-skill-chip">Motion</span>
+                                
                             </div>
 
                         </div>
@@ -2665,12 +2661,12 @@ to { opacity:1; transform: translateY(0); }
                     <div class="strip-label">Projects Delivered</div>
                 </div>
                 <div class="strip-stat">
-                    <div class="strip-num">5yr</div>
+                    <div class="strip-num">1yr</div>
                     <div class="strip-label">Industry Experience</div>
                 </div>
                 <div class="strip-stat">
-                    <div class="strip-num">24M</div>
-                    <div class="strip-label">Combined Views</div>
+                    <div class="strip-num">20+</div>
+                    <div class="strip-label">Clients</div>
                 </div>
             </div>
         </div>
@@ -2681,7 +2677,7 @@ to { opacity:1; transform: translateY(0); }
 
 
 <!-- ─── CONTACT ─── -->
-<section class="contact-section">
+<section id= "contu" class="contact-section">
     <canvas id="contact-canvas"></canvas>
 
     <div class="contact-inner">
@@ -2735,7 +2731,7 @@ to { opacity:1; transform: translateY(0); }
                     <div class="fic-icon">✉</div>
                     <div>
                         <div class="fic-label">Email</div>
-                        <div class="fic-value">hello@amarthyai.com</div>
+                        <div class="fic-value">amrthiya323456@gmail.com</div>
                     </div>
                 </div>
 
@@ -2743,7 +2739,7 @@ to { opacity:1; transform: translateY(0); }
                     <div class="fic-icon">📍</div>
                     <div>
                         <div class="fic-label">Based In</div>
-                        <div class="fic-value">Kerala, India</div>
+                        <div class="fic-value">Kannur, Kerala</div>
                     </div>
                 </div>
 
@@ -2765,9 +2761,9 @@ to { opacity:1; transform: translateY(0); }
 <div class="footer-logo">Amarthyai</div>
 <div class="footer-copy">© 2026 — Video Editor & Motion Designer</div>
 <div class="footer-links">
-<a href="#" class="footer-link">Top</a>
-<a href="#" class="footer-link">Work</a>
-<a href="#" class="footer-link">Contact</a>
+<a href="#hee" class="footer-link">Top</a>
+<a href="#amrthi" class="footer-link">Work</a>
+<a href="#contu" class="footer-link">Contact</a>
 </div>
 </footer>
 
